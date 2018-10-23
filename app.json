@@ -21,7 +21,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSAppTransportSecurity" : {
+          "NSAllowsArbitraryLoads" : true,
+          "NSAllowsArbitraryLoadsForMedia": true, 
+          "NSAllowsArbitraryLoadsInWebContent": true, 
+          "NSExceptionAllowsInsecureHTTPLoads": true,
+          "NSTemporaryExceptionAllowsInsecureHTTPLoads": true,
+          "NSTemporaryExceptionMinimumTLSVersion": true
+        }
+      }
     }
   }
 }

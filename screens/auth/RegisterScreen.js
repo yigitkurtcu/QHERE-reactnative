@@ -8,7 +8,10 @@ export default class RegisterScreen extends React.Component {
 
   render() {
     return (
-      <RegisterForm onSuccess={() => {this.props.navigation.navigate('Teacher')}} />
+        <RegisterForm 
+          navigation={this.props.navigation}
+          onSuccess={() => {this.props.navigation.navigate('Teacher')}} 
+        />
     );
   }
 }

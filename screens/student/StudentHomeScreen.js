@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 
+import { clearStore } from '../../helpers/localStore';
 import { MonoText } from '../../components/StyledText';
 
 export default class StudentHomeScreen extends React.Component {
@@ -20,6 +21,9 @@ export default class StudentHomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <MonoText style={styles.codeHighlightText}>STUDENT HOME SCREEN</MonoText>
+        <TouchableOpacity onPress={() => { clearStore(); this.props.navigation.navigate('Auth')}}>
+          <Text>LOGOUT!</Text>
+        </TouchableOpacity>
       </View>
     );
   }
