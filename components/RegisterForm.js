@@ -1,15 +1,17 @@
 import React from 'react';
 import {
     Text,
-  View,
-  Picker
+    View,
+    Modal,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity
 } from 'react-native';
+import { Gender } from '../components/common';
 import { Register } from '../helpers/http';
 
-import { Button, Card, CardSection, Input } from './common';
-
 class RegisterForm extends React.Component {
-    state = { fullName: '', schoolNumber: '', gender: 'Erkek', email: '', password: ''}
+    state = { fullName: '', schoolNumber: '', gender: 'Cinsiyet', email: '', password: '', showGender: false}
     doRegister() {
         var user = {
             fullName: this.state.fullName,
@@ -29,75 +31,131 @@ class RegisterForm extends React.Component {
         })
     }
 
+    genderText() {
+        if(this.state.gender != 'Cinsiyet'){
+            return(
+                <TouchableOpacity style={styles.modal} onPress={() => {this.setState({showGender: true})}}>
+                    <Text style={styles.modalText}>{this.state.gender}</Text>
+                </TouchableOpacity>      
+            );     
+        }else {
+            return(
+                <TouchableOpacity style={styles.modal} onPress={() => {this.setState({showGender: true})}}>
+                    <Text style={styles.modalTextDefault}>{this.state.gender}</Text>
+                </TouchableOpacity>      
+            );
+        }
+    }
+
     render () {
         return (
             <View>
-                <Card>
-                    <CardSection>
-                    <Input 
-                        label="Ad Soyad" 
-                        placeholder="Name Surname" 
+
+                    <TextInput 
+                        placeholder="Ad Soyad" 
+                        autoCorrect={false}
+                        underlineColorAndroid={'transparent'}
+                        style={styles.input}
                         onChangeText={(fullName, itemIndex) => this.setState({ fullName })}
                         value={this.state.fullName}
                     />
-                </CardSection>
 
-                <CardSection>
-                    <Input 
-                        label="Okul No" 
-                        placeholder="142804012"
+                    <TextInput 
+                        placeholder="Okul Numarası"
+                        autoCorrect={false}
+                        underlineColorAndroid={'transparent'}
+                        style={styles.input}
                         value= {this.state.schoolNumber}
                         onChangeText={schoolNumber => this.setState({ schoolNumber })} 
                     />
-                </CardSection>
+                
+                    {this.genderText()}
 
-                <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={styles.pickerTextStyle}>Cinsiyet</Text>
-                    <Picker
-                        selectedValue={this.state.gender}
-                        onValueChange={value => this.setState({gender: value})}
-                    >
-                        <Picker.Item label="Erkek" value="Erkek" />
-                        <Picker.Item label="Kadın" value="Kadın" />
-                    </Picker>
-                </CardSection>
-
-                <CardSection>
-                    <Input 
-                        label="Email" 
-                        placeholder="user@gmail.com" 
+                    <TextInput 
+                        placeholder="Email" 
+                        autoCorrect={false}
+                        underlineColorAndroid={'transparent'}
+                        style={styles.input}
                         value= {this.state.email}
                         onChangeText={email => this.setState({ email })} 
                     />
-                </CardSection>
-
-                <CardSection>
-                    <Input 
-                        label="Şifre" 
-                        placeholder="password"
+                    <TextInput 
+                        placeholder="Şifre"
+                        autoCorrect={false}
+                        underlineColorAndroid={'transparent'}
+                        style={styles.input}
                         secureTextEntry
                         value= {this.state.password}
                         onChangeText={password => this.setState({ password })} 
                     />
-                </CardSection>
 
-                <CardSection>
-                    <Button 
-                        onPress={() => {this.doRegister()}}
-                    >Giriş Yap</Button>
-                </CardSection>
-                </Card>
+                    <TouchableOpacity style={styles.button} onPress={() => {this.doRegister()}}>
+                        <Text style={styles.buttonText}>Kayıt Ol</Text>
+                    </TouchableOpacity>
+
+                    <Gender
+                        visible={this.state.showGender} 
+                        onErkek={() => {this.setState({showGender: false, gender:'Erkek'})}}
+                        onKadin={() => {this.setState({showGender: false, gender:'Kadın'})}}>
+                            Cinsiyetinizi seçiniz.
+                    </Gender>
+
             </View>
 
         );
     }
   }
 
-  const styles = {
-    pickerTextStyle: {
-        fontSize: 20,
-        paddingLeft: 22,
+const styles = StyleSheet.create({
+    container : {
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    input: {
+      fontSize: 16,
+      height: 40,
+      width: 300, 
+      backgroundColor: '#fafafa',
+      borderWidth: 1,
+      borderColor: '#c7c7c7',
+      borderRadius: 5,
+      color: '#000000',
+      marginVertical: 10,
+      paddingHorizontal: 15
+    },
+    button: {
+      height: 40,
+      width:300,
+      backgroundColor: '#66ccff',
+      borderRadius: 5,
+      marginVertical: 10,
+      paddingVertical: 10,
+    },
+    buttonText: {
+      fontSize: 16,
+      textAlign: 'center'
+    },
+    modal: {
+        height: 40,
+        width:300,
+        backgroundColor: '#fafafa',
+        borderWidth: 1,
+        borderColor: '#c7c7c7',
+        borderRadius: 5,
+        marginVertical: 10,
+        paddingVertical: 10,
+    },
+    modalText: {
+        fontSize: 16,
+        paddingLeft: 12,
+        color: '#000000'
+    },
+    modalTextDefault: {
+        fontSize: 16,
+        paddingLeft: 12,
+        color: '#cacaca'
     }
-}
+  });
 
  export default RegisterForm;

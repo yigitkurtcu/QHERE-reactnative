@@ -1,14 +1,20 @@
 import React from 'react';
 import {
-  View
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet
 } from 'react-native';
 import { getKey } from '../../helpers/localStore';
 import LoginForm from '../../components/LoginForm';
-
+import Logo from '../../components/Logo';
 export default class LoginScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Login',
-  };
+   static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#ffffff',
+      borderBottomWidth: 0,
+    }
+  }; 
 
   componentDidMount() {
     getKey('accessToken')
@@ -30,15 +36,33 @@ export default class LoginScreen extends React.Component {
     })
   }
   render() {
-
-
       return (
-      <View>
-        <LoginForm 
-          navigation={this.props.navigation}
-          goRegister={() => {this.props.navigation.navigate('Register')}}
-        />
-      </View>
+        <View style={styles.container}>
+          <Logo />
+          <LoginForm  
+            navigation={this.props.navigation}
+          />
+          <TouchableOpacity onPress={() => {this.props.navigation.navigate('Register')}}>
+              <Text style={styles.goRegisterText}>Hesabınız yoksa üye olmak için tıklayınız!</Text>
+          </TouchableOpacity>
+        </View>
+        
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container : {
+    backgroundColor: '#ffffff',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  goRegisterText: {
+    color: '#000',
+    fontSize: 14,
+    fontWeight:'500',
+    textAlign: 'center',
+    paddingBottom: 20,
+  }
+});

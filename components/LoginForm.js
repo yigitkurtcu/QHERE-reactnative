@@ -1,28 +1,19 @@
 import React from 'react';
 import {
+  TextInput,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
 import { setKey } from '../helpers/localStore';
 
 import { Login }  from '../helpers/http'
-import { Button, Card, CardSection, Input } from './common';
-import { red } from 'ansi-colors';
+import { Button } from './common';
+
 class LoginForm extends React.Component {
   state = { email: '', password: ''}
 
-  userTypeRender() {
-    if(this.props.userType == 'student') {
-      return (        
-        <CardSection>
-            <TouchableOpacity onPress={this.props.goRegister}>
-              <Text style={styles.registerText}>Hesabınız yoksa üye olmak için tıklayınız!</Text>
-            </TouchableOpacity>
-        </CardSection>
-      )
-    }
-  }
   
   doLogin() {    
         var user = {
@@ -54,39 +45,82 @@ class LoginForm extends React.Component {
 
   render () {
     return (
-      <View>
-        <Card>
-            <CardSection>
-                <Input 
-                  label="Email" 
-                  placeholder="user@gmail.com" 
-                  value= {this.state.email}
-                  onChangeText={email => this.setState({ email })} 
-                />
-              </CardSection>
+      <View style={styles.container}>
+        <TextInput 
+          placeholder="Email"
+          autoCorrect={false}
+          underlineColorAndroid={'transparent'}
+          style={styles.input}
+          onChangeText={(email) => this.setState({email})}
+          value={this.state.email}
+        />
+        <TextInput 
+          placeholder="Şifre"
+          autoCorrect={false}
+          underlineColorAndroid={'transparent'}
+          secureTextEntry={true}
+          style={styles.input}
+          onChangeText={(password) => this.setState({password})}
+          value={this.state.password}
+        />
+        <TouchableOpacity style={styles.forgotButton} onPress={() => {this.doLogin()}}>
+              <Text style={styles.forgotText}>Şifreni mi Unuttun?</Text>
+        </TouchableOpacity>
 
-            <CardSection>
-                <Input 
-                  label="Şifre" 
-                  placeholder="password"
-                  secureTextEntry
-                  value= {this.state.password}
-                  onChangeText={password => this.setState({ password })} 
-                />
-            </CardSection>
-  
-            <CardSection>
-              <Button 
-                onPress={() => {this.doLogin()}}
-              >Giriş Yap</Button>
-            </CardSection>
-            {this.userTypeRender()}
-          </Card>
+          <TouchableOpacity style={styles.button} onPress={() => {this.doLogin()}}>
+                <Text style={styles.buttonText} >Giriş Yap</Text>
+          </TouchableOpacity>
+
+
+        
       </View>
+                
       );
   }
     
   }
 
+  const styles = StyleSheet.create({
+    container : {
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    input: {
+      fontSize: 16,
+      height: 40,
+      width: 300, 
+      backgroundColor: '#fafafa',
+      borderWidth: 1,
+      borderColor: '#c7c7c7',
+      borderRadius: 5,
+      color: '#000000',
+      marginVertical: 10,
+      paddingHorizontal: 15
+    },
+    button: {
+      height: 50,
+      width:300,
+      backgroundColor: '#66ccff',
+      borderRadius: 5,
+      marginVertical: 10,
+      paddingVertical: 10,
+    },
+    buttonText: {
+      fontSize: 18,
+      fontWeight:'500',
+      textAlign: 'center'
+    },
+    forgotButton: {
+      marginVertical: 5,
+      width:300,
+    },
+    forgotText: {
+      color: '#3399ff',
+      fontSize: 14,
+      fontWeight:'500',
+      textAlign: 'right'
+    }
+  });
 
 export default LoginForm;
