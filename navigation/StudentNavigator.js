@@ -4,25 +4,53 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import StudentHomeScreen from '../screens/student/StudentHomeScreen';
+import QRCameraScreen from '../screens/student/QRCameraScreen';
+import StudentLessonsScreen from '../screens/student/StudentLessonsScreen';
 
-const StudentHomeStack = createStackNavigator({
+const StudentHome = createStackNavigator({
   StudentHome: StudentHomeScreen,
 });
 
-StudentHomeStack.navigationOptions = {
+StudentHome.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={ Platform.OS === 'ios'? `ios-home${focused ? '' : '-outline'}`: 'md-home' }
+    />
+  ),
+};
+
+const QRCamera = createStackNavigator({
+  QRCamera: QRCameraScreen,
+});
+
+QRCamera.navigationOptions = {
+  tabBarLabel: 'QHERE',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={ Platform.OS === 'ios'? `ios-camera${focused ? '' : '-outline'}`: 'md-camera' }
+    />
+  ),
+};
+
+const StudentLessons = createStackNavigator({
+  StudentLessons: StudentLessonsScreen,
+});
+
+StudentLessons.navigationOptions = {
+  tabBarLabel: 'Derslerim',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={ Platform.OS === 'ios'? `ios-book${focused ? '' : '-outline'}`: 'md-book' }
     />
   ),
 };
 
 export default createBottomTabNavigator({
-  StudentHome: StudentHomeStack
+  StudentHome,
+  QRCamera,
+  StudentLessons
 }, {initialRouteName: 'StudentHome',});

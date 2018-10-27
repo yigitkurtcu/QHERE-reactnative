@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import { getKey } from '../../helpers/localStore';
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../components/auth/LoginForm';
 import Logo from '../../components/Logo';
 export default class LoginScreen extends React.Component {
    static navigationOptions = {

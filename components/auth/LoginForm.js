@@ -6,39 +6,39 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import { setKey } from '../helpers/localStore';
+import { setKey } from '../../helpers/localStore';
 
-import { Login }  from '../helpers/http'
-import { Button } from './common';
+import { Login }  from '../../helpers/http'
+import { Button } from '../common';
 
 class LoginForm extends React.Component {
   state = { email: '', password: ''}
 
   
   doLogin() {    
-        var user = {
-            email: this.state.email,
-            password: this.state.password
-        };
-        Login(user)
-        .then(res => {
-          setKey('accessToken', res.data.token.accessToken)
-          .then(() => {
-            setKey('userType', res.data.userType)
-            .then(() => {
-              if(res.data.userType == 'Student')
-                this.props.navigation.navigate('Student')
-              else
-                this.props.navigation.navigate('Teacher')
-            }).catch(err => {
-              console.log(err);
-            })
-          }).catch(err => {
-            console.log(err);
-          })
+    var user = {
+        email: this.state.email,
+        password: this.state.password
+    };
+    Login(user)
+    .then(res => {
+      setKey('accessToken', res.data.token.accessToken)
+      .then(() => {
+        setKey('userType', res.data.userType)
+        .then(() => {
+          if(res.data.userType == 'Student')
+            this.props.navigation.navigate('Student')
+          else
+            this.props.navigation.navigate('Teacher')
         }).catch(err => {
-            console.log(err);
+          console.log(err);
         })
+      }).catch(err => {
+        console.log(err);
+      })
+    }).catch(err => {
+      console.log(err);
+    })
   }
   
 

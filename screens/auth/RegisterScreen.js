@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from '../../components/RegisterForm';
+import RegisterForm from '../../components/auth/RegisterForm';
 import {
   TouchableOpacity,
   Text,
@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   logoContainer: {
-    marginBottom: 50,
+    marginBottom: 80,
   }
 });

@@ -7,8 +7,8 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
-import { Gender } from '../components/common';
-import { Register } from '../helpers/http';
+import { Gender } from '../common';
+import { Register } from '../../helpers/http';
 
 class RegisterForm extends React.Component {
     state = { fullName: '', schoolNumber: '', gender: 'Cinsiyet', email: '', password: '', showGender: false}
@@ -22,10 +22,7 @@ class RegisterForm extends React.Component {
         };
         Register(user)
         .then(res => {
-            if(this.props.userType == 'student')
-              this.props.navigation.navigate('Student')
-            else
-              this.props.navigation.navigate('Teacher')
+            this.props.navigation.navigate('Login')
         }).catch(err => {
             alert(err.message)
         })

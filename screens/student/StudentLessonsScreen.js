@@ -9,8 +9,10 @@ import {
   View,
 } from 'react-native';
 
-import LessonList from '../../components/student/LessonList';
-export default class StudentHomeScreen extends React.Component {
+import { clearStore } from '../../helpers/localStore';
+import { MonoText } from '../../components/StyledText';
+
+export default class StudentLessonsScreen extends React.Component {
   static navigationOptions = {
     title: 'QHERE',
   };
@@ -18,22 +20,22 @@ export default class StudentHomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text  style={ styles.headerTextStyle }>Katılabileceğiniz Dersler</Text> 
-        <LessonList />
+        <MonoText style={styles.codeHighlightText}>STUDENT HOME SCREEN</MonoText>
+        <TouchableOpacity onPress={() => { clearStore(); this.props.navigation.navigate('Auth')}}>
+          <Text>LOGOUT!</Text>
+        </TouchableOpacity>
       </View>
     );
   }
+
+
+
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  headerTextStyle: {
-    fontSize: 20,
-    alignSelf: 'center',
-    marginVertical: 20,
   },
   developmentModeText: {
     marginBottom: 20,
