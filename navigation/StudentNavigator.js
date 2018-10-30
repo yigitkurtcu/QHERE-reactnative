@@ -12,7 +12,6 @@ const StudentHome = createStackNavigator({
 });
 
 StudentHome.navigationOptions = {
-  tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -26,7 +25,6 @@ const QRCamera = createStackNavigator({
 });
 
 QRCamera.navigationOptions = {
-  tabBarLabel: 'QHERE',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -40,7 +38,6 @@ const StudentLessons = createStackNavigator({
 });
 
 StudentLessons.navigationOptions = {
-  tabBarLabel: 'Derslerim',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -53,4 +50,10 @@ export default createBottomTabNavigator({
   StudentHome,
   QRCamera,
   StudentLessons
-}, {initialRouteName: 'StudentHome',});
+}, 
+{
+  tabBarOptions: {
+    showLabel: false
+  }
+},
+{initialRouteName: 'StudentHome',});

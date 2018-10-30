@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, Modal} from 'react-native';
-import { CardSection } from './CardSection';
-import { Button } from './Button';
+import { CardSection } from './common/CardSection';
+import { Button } from './common/Button';
 
-const Gender = ({ children, visible, onErkek, onKadin }) => {
+export default Confirm = ({ children, visible, accept, decline }) => {
     const { cardSectionStyle, textStyle, containerStyle } = styles;
     return (
         <Modal
@@ -18,8 +18,8 @@ const Gender = ({ children, visible, onErkek, onKadin }) => {
                 </CardSection>
 
                 <CardSection>
-                    <Button color={'#000'} onPress={onErkek}>Erkek</Button>
-                    <Button color={'#000'} onPress={onKadin}>Kadın</Button>
+                    <Button color={'#000'} onPress={accept}>Evet</Button>
+                    <Button color={'#000'} onPress={decline}>Hayır</Button>
                 </CardSection>
             </View>
             
@@ -45,4 +45,3 @@ const styles = {
     }
 }
 
-export { Gender };

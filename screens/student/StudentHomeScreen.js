@@ -18,7 +18,7 @@ export default class StudentHomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text  style={ styles.headerTextStyle }>Katılabileceğiniz Dersler</Text> 
+        <Text  style={ styles.headerTextStyle }>Açık Dersler</Text> 
         <LessonList />
       </View>
     );
@@ -28,12 +28,14 @@ export default class StudentHomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#01579b',
   },
   headerTextStyle: {
-    fontSize: 20,
+    color: '#fff',
+    fontSize: 22,
     alignSelf: 'center',
     marginVertical: 20,
+    fontWeight: 'bold'
   },
   developmentModeText: {
     marginBottom: 20,
