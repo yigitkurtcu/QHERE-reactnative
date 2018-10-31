@@ -9,20 +9,18 @@ import {
   View,
 } from 'react-native';
 
-import { clearStore } from '../../helpers/localStore';
-import { MonoText } from '../../components/StyledText';
+import MyLessonList from '../../components/student/MyLessonList';
 
 export default class StudentLessonsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Derslerim',
+    title: 'QHERE',
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => { clearStore(); this.props.navigation.navigate('Auth')}}>
-          <Text style={{color:'#fff'}}>LOGOUT!</Text>
-        </TouchableOpacity>
+        <Text  style={ styles.headerTextStyle }>Derslerim</Text> 
+        <MyLessonList />
       </View>
     );
   }
@@ -35,5 +33,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#01579b',
-  }
+  },
+  headerTextStyle: {
+    color: '#fff',
+    fontSize: 22,
+    alignSelf: 'center',
+    marginVertical: 20,
+    fontWeight: 'bold'
+  },
 });

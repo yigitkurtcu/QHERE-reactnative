@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, FlatList, RefreshControl } from 'react-native';
-import Lesson from './Lesson'
-import { getClasses }  from '../../helpers/http'
+import { ScrollView, Text, View, FlatList, RefreshControl,TouchableOpacity } from 'react-native';
+import MyLesson from './MyLesson'
+import axios from 'axios';
+import { getMyClasses }  from '../../helpers/http'
+import { clearStore } from '../../helpers/localStore';import { getKey } from '../../helpers/localStore';
 export default class LessonList extends Component {
+
     state = { lessons: [], refreshing: true, error: false}; 
 
     componentWillMount() {
@@ -15,7 +18,7 @@ export default class LessonList extends Component {
     }
 
     makeRequest = () => {
-        getClasses()
+        getMyClasses()
         .then(response => this.setState({
              lessons: response.data ,
              refreshing: false,
@@ -28,7 +31,7 @@ export default class LessonList extends Component {
     }
 
     renderLessons(lesson) {
-        return <Lesson lessonInstance={lesson.item} />
+        return <MyLesson lessonInstance={lesson.item} />
     }
 
     errorMessage = () => {
@@ -36,6 +39,10 @@ export default class LessonList extends Component {
         return(
             <Text style={{color:'#e53935', fontSize: 22, alignSelf: 'center', margin: 15, fontWeight:'bold'}}>Ağ Hatası!</Text>
         );
+    }
+
+    logout = () => {
+        clearStore();
     }
 
 
@@ -56,6 +63,9 @@ export default class LessonList extends Component {
                          />
                     }
                 />
+                <TouchableOpacity onPress={this.logout}>
+                    <Text>LOGOUT</Text>
+                </TouchableOpacity>
             </View>
         );
     }

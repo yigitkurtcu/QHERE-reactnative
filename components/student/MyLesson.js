@@ -1,18 +1,10 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Card, CardSection } from '../common'
-import Confirm from '../Confirm';
-export default class Lesson extends React.Component {
-    state = {showConfirmation: false} 
 
-    doConfirmation = () => {
-        console.log('...', this.props.lessonInstance)
-        this.setState({showConfirmation: false})
-        //TO-DO: Post JoinRequest
-    }
+export default class Lesson extends React.Component {
 
     render () {
-
         const { className, managerName, quota, discontinuity } = this.props.lessonInstance;
         return (
             <Card>  
@@ -23,18 +15,10 @@ export default class Lesson extends React.Component {
         
                                 <Text style={styles.lessonHeader}>Ders Hocası: <Text style={ styles.lessonText }>{ managerName } </Text></Text>
                                 
-                                <Text style={styles.lessonHeader}>Kontenjan: <Text style={ styles.lessonText }> { quota } </Text></Text>
-                                
                                 <Text style={styles.lessonHeader}>Devamsızlık:  <Text style={ styles.lessonText }>{ discontinuity } Ders </Text></Text>
                             </View>
                     </CardSection>
                 </TouchableOpacity>   
-                <Confirm
-                    visible={this.state.showConfirmation} 
-                    accept={this.doConfirmation.bind(this)}
-                    decline={() => {this.setState({showConfirmation: false})}}>
-                        { className } dersine katılmak istediğinizden emin misiniz ?
-                </Confirm>  
             </Card>
         );
     }

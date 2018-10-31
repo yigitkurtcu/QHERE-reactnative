@@ -37,3 +37,17 @@ export function clearStore() {
         })
     });
 }
+
+export function checkStore() {
+    return new Promise((resolve,reject) => {
+        getKey('accessToken').then(token => {
+            getKey('userType').then(userType => {
+                return resolve("Store verified.");
+            }).catch(err => {
+                return reject("No userType")
+            })
+        }).catch(err => {
+            return reject("No token")
+        })
+    });
+}

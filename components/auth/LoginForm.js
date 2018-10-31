@@ -6,10 +6,9 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import { setKey } from '../../helpers/localStore';
 
+import { setKey } from '../../helpers/localStore';
 import { Login }  from '../../helpers/http'
-import { Button } from '../common';
 
 class LoginForm extends React.Component {
   state = { email: '', password: ''}
@@ -40,9 +39,11 @@ class LoginForm extends React.Component {
       console.log(err);
     })
   }
+
+  doForgot() {
+    this.props.navigation.navigate('Forgot')
+  }
   
-
-
   render () {
     return (
       <View style={styles.container}>
@@ -63,7 +64,7 @@ class LoginForm extends React.Component {
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
         />
-        <TouchableOpacity style={styles.forgotButton} onPress={() => {this.doLogin()}}>
+        <TouchableOpacity style={styles.forgotButton} onPress={() => {this.doForgot()}}>
               <Text style={styles.forgotText}>Şifreni mi Unuttun?</Text>
         </TouchableOpacity>
 

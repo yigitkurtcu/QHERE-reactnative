@@ -5,7 +5,10 @@ import {
   View,
   StyleSheet
 } from 'react-native';
-import { getKey } from '../../helpers/localStore';
+import axios from 'axios';
+
+import { getKey,checkStore } from '../../helpers/localStore';
+import { checkToken}  from '../../helpers/http'
 import LoginForm from '../../components/auth/LoginForm';
 import Logo from '../../components/Logo';
 export default class LoginScreen extends React.Component {
@@ -17,6 +20,7 @@ export default class LoginScreen extends React.Component {
   }; 
 
   componentDidMount() {
+    checkStore().then(res => { console.log(res)})
     getKey('accessToken')
     .then(token => {
       if(token != null){
@@ -24,8 +28,11 @@ export default class LoginScreen extends React.Component {
         .then(userType => {
           token = token.slice(1, token.length-1);
           userType = userType.slice(1,userType.length-1);
-          if(userType != null)
+          if(userType != null){
+            axios.defaults.headers.common['Authorization'] = token;
             this.props.navigation.navigate(userType)
+          }
+            
         }).catch(err => {
           console.log(err)
         })
@@ -38,10 +45,9 @@ export default class LoginScreen extends React.Component {
   render() {
       return (
         <View style={styles.container}>
-          <Logo />
-          <LoginForm  
-            navigation={this.props.navigation}
-          />
+          <Text style={styles.headerText}>QHERE</Text>
+          <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
+          <LoginForm navigation={this.props.navigation}/>
           <TouchableOpacity onPress={() => {this.props.navigation.navigate('Register')}}>
               <Text style={styles.goRegisterText}>Hesabınız yoksa üye olmak için tıklayınız!</Text>
           </TouchableOpacity>
@@ -57,6 +63,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  headerText: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+  infoText: {
+    fontSize: 20,
+    alignSelf: 'center',
+    margin: 10,
   },
   goRegisterText: {
     color: '#000',

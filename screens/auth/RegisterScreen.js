@@ -19,15 +19,14 @@ export default class RegisterScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container} >
-        <View style={styles.logoContainer}>
-          <Logo />
-        </View>
+      <View style={styles.container}>
+        <Text style={styles.headerText}>QHERE</Text>
+        <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
         <RegisterForm 
           navigation={this.props.navigation}
           onSuccess={() => {this.props.navigation.navigate('Teacher')}} 
         />
-      </ScrollView>
+      </View>
        
     );
   }
@@ -38,9 +37,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
     alignItems: 'center',
-    justifyContent: 'center'
   },
-  logoContainer: {
+  headerText: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+  infoText: {
+    fontSize: 20,
+    alignSelf: 'center',
+    marginTop: 10,
     marginBottom: 80,
-  }
+  },
 });
