@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, FlatList, RefreshControl,TouchableOpacity } from 'react-native';
+import { Text, View, FlatList, RefreshControl } from 'react-native';
 import MyLesson from './MyLesson'
 import axios from 'axios';
 import { getMyClasses }  from '../../helpers/http'
-import { clearStore } from '../../helpers/localStore';import { getKey } from '../../helpers/localStore';
+
 export default class LessonList extends Component {
 
     state = { lessons: [], refreshing: true, error: false}; 
@@ -41,9 +41,6 @@ export default class LessonList extends Component {
         );
     }
 
-    logout = () => {
-        clearStore();
-    }
 
 
     render() {
@@ -63,9 +60,6 @@ export default class LessonList extends Component {
                          />
                     }
                 />
-                <TouchableOpacity onPress={this.logout}>
-                    <Text>LOGOUT</Text>
-                </TouchableOpacity>
             </View>
         );
     }

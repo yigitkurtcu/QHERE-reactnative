@@ -41,13 +41,19 @@ export function clearStore() {
 export function checkStore() {
     return new Promise((resolve,reject) => {
         getKey('accessToken').then(token => {
-            getKey('userType').then(userType => {
-                return resolve("Store verified.");
-            }).catch(err => {
-                return reject("No userType")
-            })
+            if(token != null){
+                getKey('userType').then(userType => {
+                    if(userType != null)
+                        return resolve("Store verified.");
+                    else
+                        return reject('userType not verified')
+                }).catch(err => {
+                    return reject(err)
+                })
+            }else
+                return reject('Token not verified')
         }).catch(err => {
-            return reject("No token")
+            return reject(err)
         })
     });
 }

@@ -1,14 +1,12 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
+import { clearStore } from '../../helpers/localStore';
 import MyLessonList from '../../components/student/MyLessonList';
 
 export default class StudentLessonsScreen extends React.Component {
@@ -16,11 +14,18 @@ export default class StudentLessonsScreen extends React.Component {
     title: 'QHERE',
   };
 
+  logout = () => {
+    clearStore();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text  style={ styles.headerTextStyle }>Derslerim</Text> 
         <MyLessonList />
+        <TouchableOpacity onPress={this.logout}>
+          <Text style={{fontSize:20, color:'#fff'}}>LOGOUT</Text>
+        </TouchableOpacity>
       </View>
     );
   }

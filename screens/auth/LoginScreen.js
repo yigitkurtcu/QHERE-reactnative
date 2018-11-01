@@ -8,9 +8,10 @@ import {
 import axios from 'axios';
 
 import { getKey,checkStore } from '../../helpers/localStore';
-import { checkToken}  from '../../helpers/http'
+import { checkToken }  from '../../helpers/http'
+
 import LoginForm from '../../components/auth/LoginForm';
-import Logo from '../../components/Logo';
+
 export default class LoginScreen extends React.Component {
    static navigationOptions = {
     headerStyle: {
@@ -20,23 +21,26 @@ export default class LoginScreen extends React.Component {
   }; 
 
   componentDidMount() {
-    checkStore().then(res => { console.log(res)})
+    checkStore()
+    .then(res => { console.log(res)})
+    .catch(err => { console.log(err) })
+
     getKey('accessToken')
     .then(token => {
       if(token != null){
         getKey('userType')
         .then(userType => {
-          token = token.slice(1, token.length-1);
-          userType = userType.slice(1,userType.length-1);
           if(userType != null){
+            token = token.slice(1, token.length-1);
+            userType = userType.slice(1,userType.length-1);
             axios.defaults.headers.common['Authorization'] = token;
-            this.props.navigation.navigate(userType)
+            checkToken()
+            .then(() => { this.props.navigation.navigate(userType)})
+            .catch(err => { console.log(err.message) })
           }
-            
         }).catch(err => {
           console.log(err)
         })
-       
       }
     }).catch(err => {
       console.log(err)

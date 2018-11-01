@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
+import axios from 'axios';
 
 import { setKey } from '../../helpers/localStore';
 import { Login }  from '../../helpers/http'
@@ -25,6 +26,7 @@ class LoginForm extends React.Component {
       .then(() => {
         setKey('userType', res.data.userType)
         .then(() => {
+          axios.defaults.headers.common['Authorization'] = res.data.token.accessToken;
           if(res.data.userType == 'Student')
             this.props.navigation.navigate('Student')
           else
