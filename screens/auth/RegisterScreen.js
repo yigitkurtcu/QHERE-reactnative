@@ -22,10 +22,7 @@ export default class RegisterScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.headerText}>QHERE</Text>
         <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
-        <RegisterForm 
-          navigation={this.props.navigation}
-          onSuccess={() => {this.props.navigation.navigate('Teacher')}} 
-        />
+        <RegisterForm navigation={this.props.navigation} />
       </View>
        
     );

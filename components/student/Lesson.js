@@ -2,13 +2,20 @@ import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Card, CardSection } from '../common'
 import Confirm from '../Confirm';
+import { joinClass }  from '../../helpers/http'
+
 export default class Lesson extends React.Component {
     state = {showConfirmation: false} 
 
     doConfirmation = () => {
-        console.log('...', this.props.lessonInstance)
+        joinClass(this.props.lessonInstance._id)
+        .then(res => {
+            console.log('Res:', res)
+        })
+        .catch(err => {
+            console.log('Err:', err)
+        })
         this.setState({showConfirmation: false})
-        //TO-DO: Post JoinRequest
     }
 
     render () {

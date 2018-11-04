@@ -11,7 +11,7 @@ import {
 
 import { MonoText } from '../../components/StyledText';
 
-export default class TeacherHomeScreen extends React.Component {
+export default class ManagerHomeScreen extends React.Component {
   static navigationOptions = {
     title: 'QHERE',
   };
@@ -19,7 +19,7 @@ export default class TeacherHomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MonoText style={styles.codeHighlightText}>TEACHER HOME SCREEN</MonoText>
+        <MonoText style={styles.codeHighlightText}>Manager HOME SCREEN</MonoText>
       </View>
     );
   }

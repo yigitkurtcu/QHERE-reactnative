@@ -30,6 +30,28 @@ export function Login(user) {
     });
 };
 
+export function Forgot(email) {
+    return new Promise((resolve,reject) => {
+        axios.post('http://192.168.1.33:3000/user/forgot/', {'email': email})
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};
+
+export function resetPassword(resetInstance) {
+    return new Promise((resolve,reject) => {
+        axios.post('http://192.168.1.33:3000/user/resetPassword/', resetInstance)
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};
+
 export function getClasses() {
     return new Promise((resolve,reject) => {
         axios.get('http://192.168.1.33:3000/student/getClasses/')
@@ -55,6 +77,17 @@ export function getMyClasses() {
 export function checkToken() {
     return new Promise((resolve,reject) => {
         axios.get('http://192.168.1.33:3000/auth/verifyToken')
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};
+
+export function joinClass(classId) {
+    return new Promise((resolve,reject) => {
+        axios.post(`http://192.168.1.33:3000/student/${classId}/joinClass`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {

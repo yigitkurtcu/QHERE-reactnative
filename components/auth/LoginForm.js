@@ -27,10 +27,8 @@ class LoginForm extends React.Component {
         setKey('userType', res.data.userType)
         .then(() => {
           axios.defaults.headers.common['Authorization'] = res.data.token.accessToken;
-          if(res.data.userType == 'Student')
-            this.props.navigation.navigate('Student')
-          else
-            this.props.navigation.navigate('Teacher')
+            this.props.navigation.navigate(res.data.userType)
+
         }).catch(err => {
           console.log(err);
         })

@@ -7,8 +7,23 @@ import {
   StyleSheet
 } from 'react-native';
 
+import { Forgot }  from '../../helpers/http'
+
 class ForgotForm extends React.Component {
     state = { email: '' }
+
+  doForgot() {
+    Forgot(this.state.email)
+    .then(res => {
+      console.log(res)
+      this.props.navigation.navigate('ChangePassword')
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    
+  }
+
   render () {
     return (
       <View style={styles.container}>,
@@ -20,7 +35,7 @@ class ForgotForm extends React.Component {
           onChangeText={(email) => this.setState({email})}
           value={this.state.email}
         />
-          <TouchableOpacity style={styles.button} onPress={() => {this.doLogin()}}>
+          <TouchableOpacity style={styles.button} onPress={() => {this.doForgot()}}>
                 <Text style={styles.buttonText}>Şifremi Sıfırla</Text>
           </TouchableOpacity>
       </View>

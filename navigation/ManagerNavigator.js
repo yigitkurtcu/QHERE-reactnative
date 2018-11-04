@@ -3,13 +3,13 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import TeacherHomeScreen from '../screens/teacher/TeacherHomeScreen';
+import ManagerHomeScreen from '../screens/manager/ManagerHomeScreen';
 
-const TeacherHomeStack = createStackNavigator({
-  TeacherHome: TeacherHomeScreen,
+const ManagerHomeStack = createStackNavigator({
+  ManagerHome: ManagerHomeScreen,
 });
 
-TeacherHomeStack.navigationOptions = {
+ManagerHomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -24,5 +24,5 @@ TeacherHomeStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  TeacherHome: TeacherHomeStack
-}, {initialRouteName: 'TeacherHome',});
+  ManagerHome: ManagerHomeStack
+}, {initialRouteName: 'ManagerHome',});

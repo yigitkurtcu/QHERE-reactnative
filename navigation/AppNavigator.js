@@ -1,11 +1,11 @@
 import { createSwitchNavigator } from 'react-navigation';
 
 import AuthNavigator from './AuthNavigator';
-import TeacherNavigator from './TeacherNavigator';
+import ManagerNavigator from './ManagerNavigator';
 import StudentNavigator from './StudentNavigator';
 
 export default createSwitchNavigator({
   Auth: AuthNavigator,
-  Teacher: TeacherNavigator,
+  Manager: ManagerNavigator,
   Student: StudentNavigator
 }, { initialRouteName: 'Auth', });
