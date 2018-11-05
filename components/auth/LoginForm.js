@@ -51,6 +51,9 @@ class LoginForm extends React.Component {
           placeholder="Email"
           autoCorrect={false}
           underlineColorAndroid={'transparent'}
+          keyboardType={'email-address'}
+          returnKeyType={'next'}
+          onSubmitEditing={() => {console.log('next')}}
           style={styles.input}
           onChangeText={(email) => this.setState({email})}
           value={this.state.email}
@@ -60,6 +63,8 @@ class LoginForm extends React.Component {
           autoCorrect={false}
           underlineColorAndroid={'transparent'}
           secureTextEntry={true}
+          returnKeyType={'send'}
+          onSubmitEditing={() => {console.log('send')}}
           style={styles.input}
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
