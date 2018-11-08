@@ -1,6 +1,8 @@
 import React from 'react';
 import {
-  TouchableOpacity,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
   Text,
   View,
   StyleSheet
@@ -19,8 +21,14 @@ export default class ChangePasswordScreen extends React.Component {
   render() {
       return (
         <View style={styles.container}>
-            <Text style={styles.headerText}>QHERE</Text>
-            <ChangePasswordForm navigation={this.props.navigation}/>
+          <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+            <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+              <View>
+                <Text style={styles.headerText}>QHERE</Text>
+                <ChangePasswordForm navigation={this.props.navigation}/>
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
         </View>
         
     );

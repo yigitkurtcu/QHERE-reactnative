@@ -1,9 +1,12 @@
 import React from 'react';
 import {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  KeyboardAvoidingView,
+  Keyboard
 } from 'react-native';
 
 
@@ -19,11 +22,17 @@ export default class ForgotScreen extends React.Component {
   render() {
       return (
         <View style={styles.container}>
-            <Text style={styles.headerText}>QHERE</Text>
-            <ForgotForm navigation={this.props.navigation}/>
-            <TouchableOpacity onPress={() => {this.props.navigation.navigate('ChangePassword')}}>
-              <Text style={styles.footerText}>Zaten bir kodun var mı?</Text>
-          </TouchableOpacity>
+          <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+            <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+              <View>
+                <Text style={styles.headerText}>QHERE</Text>
+                <ForgotForm navigation={this.props.navigation}/>
+                <TouchableOpacity onPress={() => {this.props.navigation.navigate('ChangePassword')}}>
+                  <Text style={styles.footerText}>Zaten bir kodun var mı?</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
         </View>
         
     );

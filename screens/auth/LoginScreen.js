@@ -1,9 +1,12 @@
 import React from 'react';
 import {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  Keyboard,
+  KeyboardAvoidingView
 } from 'react-native';
 import axios from 'axios';
 
@@ -46,17 +49,23 @@ export default class LoginScreen extends React.Component {
       console.log(err)
     })
   }
+
   render() {
       return (
         <View style={styles.container}>
-          <Text style={styles.headerText}>QHERE</Text>
-          <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
-          <LoginForm navigation={this.props.navigation}/>
-          <TouchableOpacity onPress={() => {this.props.navigation.navigate('Register')}}>
-              <Text style={styles.goRegisterText}>Hesabınız yoksa üye olmak için tıklayınız!</Text>
-          </TouchableOpacity>
+          <KeyboardAvoidingView behavior="padding" enabled>
+            <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+              <View>
+                <Text style={styles.headerText}>QHERE</Text>
+                <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
+                <LoginForm navigation={this.props.navigation}/>
+                <TouchableOpacity onPress={() => {this.props.navigation.navigate('Register')}}>
+                    <Text style={styles.goRegisterText}>Hesabınız yoksa üye olmak için tıklayınız!</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
         </View>
-        
     );
   }
 }

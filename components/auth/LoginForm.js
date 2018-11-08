@@ -52,8 +52,7 @@ class LoginForm extends React.Component {
           autoCorrect={false}
           underlineColorAndroid={'transparent'}
           keyboardType={'email-address'}
-          returnKeyType={'next'}
-          onSubmitEditing={() => {console.log('next')}}
+          onSubmitEditing={() => {this.refs.txtPassword.focus()}}
           style={styles.input}
           onChangeText={(email) => this.setState({email})}
           value={this.state.email}
@@ -64,10 +63,11 @@ class LoginForm extends React.Component {
           underlineColorAndroid={'transparent'}
           secureTextEntry={true}
           returnKeyType={'send'}
-          onSubmitEditing={() => {console.log('send')}}
+          onSubmitEditing={() => {this.doLogin()}}
           style={styles.input}
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
+          ref={"txtPassword"}
         />
         <TouchableOpacity style={styles.forgotButton} onPress={() => {this.doForgot()}}>
               <Text style={styles.forgotText}>Şifreni mi Unuttun?</Text>

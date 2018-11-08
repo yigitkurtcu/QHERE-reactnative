@@ -1,11 +1,12 @@
 import React from 'react';
 import RegisterForm from '../../components/auth/RegisterForm';
 import {
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   Text,
-  ScrollView,
   StyleSheet,
-  View
+  View,
+  Keyboard,
+  KeyboardAvoidingView
 } from 'react-native';
 import Logo from '../../components/Logo';
 
@@ -19,12 +20,17 @@ export default class RegisterScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.headerText}>QHERE</Text>
-        <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
-        <RegisterForm navigation={this.props.navigation} />
-      </View>
-       
+        <View style={styles.container}>
+          <KeyboardAvoidingView behavior="position" enabled>
+            <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+              <View>
+                <Text style={styles.headerText}>QHERE</Text>
+                <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
+                <RegisterForm navigation={this.props.navigation} />
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+        </View>
     );
   }
 }
