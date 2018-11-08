@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-import { MonoText } from '../../components/StyledText';
+import RequestList from '../../components/manager/RequestList';
 
 export default class ManagerHomeScreen extends React.Component {
   static navigationOptions = {
@@ -19,18 +19,23 @@ export default class ManagerHomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-       
+        <Text  style={ styles.headerTextStyle }>Ders İstekleri</Text> 
+        <RequestList />
       </View>
     );
   }
-
-
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#01579b'
+  },
+  headerTextStyle: {
+    color: '#fff',
+    fontSize: 22,
+    alignSelf: 'center',
+    marginVertical: 20,
+    fontWeight: 'bold'
   }
 });
