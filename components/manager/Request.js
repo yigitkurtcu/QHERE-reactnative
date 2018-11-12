@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, Platform } from 'react-native'
 import { Card, CardSection } from '../common'
 import Confirm from '../Confirm';
+import Icon from '../Icon';
 import { joinClass }  from '../../helpers/http'
 
 export default class Request extends React.Component {
@@ -20,27 +21,38 @@ export default class Request extends React.Component {
 
     render () {
 
-        const { className, managerName, quota, discontinuity } = this.props.requestInstance;
+        const { className, studentName, studentNumber } = this.props.requestInstance;
         return (
             <Card>  
-                <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
+
                     <CardSection>
                             <View style={styles.headerContentStyle}>
-                                <Text style={styles.requestHeader}>Dersin Adı: <Text  style={ styles.requestText }>{ className } </Text></Text>
+                                <Text style={styles.requestHeader}>Başvurulan Ders: <Text  style={ styles.requestText }>{ className } </Text></Text>
         
-                                <Text style={styles.requestHeader}>Ders Hocası: <Text style={ styles.requestText }>{ managerName } </Text></Text>
+                                <Text style={styles.requestHeader}>Öğrenci Adı: <Text style={ styles.requestText }>{ studentName } </Text></Text>
                                 
-                                <Text style={styles.requestHeader}>Kontenjan: <Text style={ styles.requestText }> { quota } </Text></Text>
-                                
-                                <Text style={styles.requestHeader}>Devamsızlık:  <Text style={ styles.requestText }>{ discontinuity } Ders </Text></Text>
+                                <Text style={styles.requestHeader}>Öğrenci Numarası: <Text style={ styles.requestText }> { studentNumber } </Text></Text>
+                                <View style={styles.iconView}>
+                                    <View style={{alignSelf: 'flex-start'}}>
+                                        <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
+                                            <Icon name={Platform.OS === 'ios' ? 'ios-checkmark' : 'md-checkmark'} />
+                                        </TouchableOpacity>   
+                                    </View>
+                                    <View style={{alignSelf: 'flex-end'}}>
+                                        <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
+                                            <Icon name={Platform.OS === 'ios' ? 'ios-close' : 'md-close'} color={'#ff0000'} />
+                                        </TouchableOpacity>   
+                                    </View>
+                                </View>
                             </View>
                     </CardSection>
-                </TouchableOpacity>   
+
+
                 <Confirm
                     visible={this.state.showConfirmation} 
                     accept={this.doConfirmation.bind(this)}
                     decline={() => {this.setState({showConfirmation: false})}}>
-                        { className } dersine katılmak istediğinizden emin misiniz ?
+                        { studentName } adlı öğrencinin { className } dersine katılmasını onaylıyor musunuz ?
                 </Confirm>  
             </Card>
         );
@@ -51,7 +63,14 @@ export default class Request extends React.Component {
 const styles = {
     headerContentStyle: {
         flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+    },
+    iconView: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginStart: 50,
+        marginEnd: 50,
     },
     requestHeader: {
         fontSize: 16,

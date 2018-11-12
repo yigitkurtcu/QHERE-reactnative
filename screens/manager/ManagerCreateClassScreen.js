@@ -1,15 +1,14 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
+  Keyboard,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
-import { MonoText } from '../../components/StyledText';
+import ClassForm from '../../components/manager/ClassForm';
 
 export default class ManagerCreateClassScreen extends React.Component {
   static navigationOptions = {
@@ -19,7 +18,15 @@ export default class ManagerCreateClassScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-
+        <KeyboardAvoidingView behavior="position" enabled>
+          <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+            <View>
+              <Text style={styles.headerText}>QHERE</Text>
+              <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
+              <ClassForm />
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
       </View>
     );
   }
@@ -31,6 +38,18 @@ export default class ManagerCreateClassScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  }
+    backgroundColor: '#01579b',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  headerText: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+  infoText: {
+    fontSize: 20,
+    alignSelf: 'center',
+    margin: 10,
+  },
 });

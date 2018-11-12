@@ -28,7 +28,7 @@ export default class RequestList extends Component {
     }
 
     renderRequests(request) {
-        return <Request lessonInstance={request.item} />
+        return <Request requestInstance={request.item} />
     }
 
     errorMessage = () => {
