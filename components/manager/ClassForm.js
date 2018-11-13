@@ -88,9 +88,9 @@ class ClassForm extends React.Component {
 
   const styles = StyleSheet.create({
     container : {
-      flexGrow: 1,
+      flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
+      marginTop: 30
     },
     input: {
       fontSize: 16,

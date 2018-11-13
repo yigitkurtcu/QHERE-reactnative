@@ -8,4 +8,4 @@ export default createSwitchNavigator({
   Auth: AuthNavigator,
   Manager: ManagerNavigator,
   Student: StudentNavigator
-}, { initialRouteName: 'Auth', });
+}, { initialRouteName: 'Auth' });

@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
-import { ScrollView, Text, View, FlatList, RefreshControl } from 'react-native';
-import Lesson from './Lesson'
-import { getClasses }  from '../../helpers/http'
-export default class LessonList extends Component {
+import React, { PureComponent } from 'react';
+import { Text, View, FlatList, RefreshControl } from 'react-native';
+import MyLesson from './MyLesson'
+import { getManagerClasses }  from '../../helpers/http'
+
+export default class LessonList extends PureComponent {
+
     state = { lessons: [], refreshing: true, error: false}; 
+
+    constructor(props) {
+        super(props)
+        this.renderLessons = this.renderLessons.bind(this)
+    }
 
     componentWillMount() {
         this.makeRequest();
@@ -15,15 +22,12 @@ export default class LessonList extends Component {
     }
 
     makeRequest = () => {
-        getClasses()
-        .then(response => {
-            console.log(response.status_code)
-            this.setState({
+        getManagerClasses()
+        .then(response => this.setState({
              lessons: response.data ,
              refreshing: false,
              error: false
-            })
-        })
+            }))
         .catch(err => {
             this.setState({refreshing: false, error: true});
             console.log(err)
@@ -31,7 +35,7 @@ export default class LessonList extends Component {
     }
 
     renderLessons(lesson) {
-        return <Lesson lessonInstance={lesson.item} />
+        return <MyLesson navigation={this.props.navigation} lessonInstance={lesson.item} />
     }
 
     errorMessage = () => {
@@ -42,6 +46,7 @@ export default class LessonList extends Component {
     }
 
 
+
     render() {
         return (
             <View style={{flex:1, backgroundColor: '#01579b'}}>
@@ -50,6 +55,7 @@ export default class LessonList extends Component {
                     data={this.state.lessons}
                     renderItem={this.renderLessons}
                     keyExtractor={(lesson) => lesson._id.toString()}
+                    extraData={{navigation: this.props.navigation}}
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}

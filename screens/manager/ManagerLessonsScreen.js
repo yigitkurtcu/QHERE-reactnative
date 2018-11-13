@@ -10,10 +10,13 @@ import {
 } from 'react-native';
 
 import { clearStore } from '../../helpers/localStore';
-
+import MyLessonList from '../../components/manager/MyLessonList';
 export default class ManagerLessonsScreen extends React.Component {
   static navigationOptions = {
-    title: 'QHERE',
+    headerStyle: {
+      backgroundColor: '#ffffff',
+      borderBottomWidth: 0,
+    }
   };
 
   logout = () => {
@@ -23,6 +26,8 @@ export default class ManagerLessonsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text  style={ styles.headerTextStyle }>Derslerim</Text> 
+        <MyLessonList navigation={this.props.navigation}/>
         <TouchableOpacity onPress={this.logout}>
           <Text style={{fontSize:20, color:'#000'}}>LOGOUT</Text>
         </TouchableOpacity>
@@ -37,6 +42,14 @@ export default class ManagerLessonsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  }
+    backgroundColor: '#01579b',
+  },
+  headerTextStyle: {
+    color: '#fff',
+    fontSize: 22,
+    alignSelf: 'center',
+    marginVertical: 20,
+    fontWeight: 'bold',
+    marginTop: 50
+  },
 });

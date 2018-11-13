@@ -20,7 +20,7 @@ export default class Lesson extends React.Component {
 
     render () {
 
-        const { className, managerName, quota, discontinuity } = this.props.lessonInstance;
+        const { className, managerName, quota, discontinuity, lastJoinTime } = this.props.lessonInstance;
         return (
             <Card>  
                 <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
@@ -33,6 +33,8 @@ export default class Lesson extends React.Component {
                                 <Text style={styles.lessonHeader}>Kontenjan: <Text style={ styles.lessonText }> { quota } </Text></Text>
                                 
                                 <Text style={styles.lessonHeader}>Devamsızlık:  <Text style={ styles.lessonText }>{ discontinuity } Ders </Text></Text>
+
+                                <Text style={styles.lessonHeader}>Son katılım tarihi: <Text style={ styles.lessonText }> {lastJoinTime.slice(0, 10)} </Text></Text>
                             </View>
                     </CardSection>
                 </TouchableOpacity>   

@@ -3,20 +3,31 @@ import { Text, View, TouchableOpacity, Platform } from 'react-native'
 import { Card, CardSection } from '../common'
 import Confirm from '../Confirm';
 import Icon from '../Icon';
-import { joinClass }  from '../../helpers/http'
+import { approveStudent, rejectStudent }  from '../../helpers/http'
 
 export default class Request extends React.Component {
-    state = {showConfirmation: false} 
+    state = {showApprove: false, showReject: false} 
 
-    doConfirmation = () => {
-        joinClass(this.props.requestInstance._id)
+    doApprove = () => {
+        approveStudent(this.props.requestInstance._id)
         .then(res => {
             console.log('Res:', res)
         })
         .catch(err => {
             console.log('Err:', err)
         })
-        this.setState({showConfirmation: false})
+        this.setState({showApprove: false})
+    }
+
+    doReject = () => {
+        rejectStudent(this.props.requestInstance._id)
+        .then(res => {
+            console.log('Res:', res)
+        })
+        .catch(err => {
+            console.log('Err:', err)
+        })
+        this.setState({showApprove: false})
     }
 
     render () {
@@ -34,12 +45,12 @@ export default class Request extends React.Component {
                                 <Text style={styles.requestHeader}>Öğrenci Numarası: <Text style={ styles.requestText }> { studentNumber } </Text></Text>
                                 <View style={styles.iconView}>
                                     <View style={{alignSelf: 'flex-start'}}>
-                                        <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
+                                        <TouchableOpacity onPress={() => {this.setState({showApprove: true})}}>
                                             <Icon name={Platform.OS === 'ios' ? 'ios-checkmark' : 'md-checkmark'} />
                                         </TouchableOpacity>   
                                     </View>
                                     <View style={{alignSelf: 'flex-end'}}>
-                                        <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
+                                        <TouchableOpacity onPress={() => {this.setState({showReject: true})}}>
                                             <Icon name={Platform.OS === 'ios' ? 'ios-close' : 'md-close'} color={'#ff0000'} />
                                         </TouchableOpacity>   
                                     </View>
@@ -47,12 +58,18 @@ export default class Request extends React.Component {
                             </View>
                     </CardSection>
 
+                <Confirm
+                    visible={this.state.showApprove} 
+                    accept={this.doApprove.bind(this)}
+                    decline={() => {this.setState({showApprove: false})}}>
+                        { studentName } adlı öğrencinin { className } dersine katılmasını onaylıyor musunuz ?
+                </Confirm>  
 
                 <Confirm
-                    visible={this.state.showConfirmation} 
-                    accept={this.doConfirmation.bind(this)}
-                    decline={() => {this.setState({showConfirmation: false})}}>
-                        { studentName } adlı öğrencinin { className } dersine katılmasını onaylıyor musunuz ?
+                    visible={this.state.showReject} 
+                    accept={this.doReject.bind(this)}
+                    decline={() => {this.setState({showReject: false})}}>
+                        { studentName } adlı öğrencinin { className } dersine katılmasını reddetmek istediğinize emin misiniz?
                 </Confirm>  
             </Card>
         );

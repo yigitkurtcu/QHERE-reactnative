@@ -56,4 +56,4 @@ export default createBottomTabNavigator({
     showLabel: false
   }
 },
-{initialRouteName: 'StudentHome',});
+{initialRouteName: 'StudentHome'});

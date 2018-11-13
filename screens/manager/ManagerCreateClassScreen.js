@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Keyboard,
-  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -18,15 +17,12 @@ export default class ManagerCreateClassScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <KeyboardAvoidingView behavior="position" enabled>
-          <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-            <View>
-              <Text style={styles.headerText}>QHERE</Text>
-              <Text style={styles.infoText}>QR Kod Yoklama Sistemi</Text>
-              <ClassForm />
-            </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+        <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+          <View>
+            <Text style={styles.headerTextStyle}>Sınıf Oluştur</Text>
+            <ClassForm />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -42,14 +38,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  headerText: {
-    fontSize: 50,
+  headerTextStyle: {
+    color: '#fff',
+    fontSize: 22,
+    alignSelf: 'center',
+    marginVertical: 20,
     fontWeight: 'bold',
-    alignSelf: 'center',
-  },
-  infoText: {
-    fontSize: 20,
-    alignSelf: 'center',
-    margin: 10,
+    marginTop: 50
   },
 });

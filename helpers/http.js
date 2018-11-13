@@ -117,3 +117,37 @@ export function createClass(classInstance) {
         })
     });
 };
+
+export function getManagerClasses() {
+    return new Promise((resolve,reject) => {
+        axios.get('http://192.168.1.33:3000/manager/getClasses/')
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+
+};
+
+export function approveStudent(requestId) {
+    return new Promise((resolve,reject) => {
+        axios.put(`http://192.168.1.33:3000/manager/${requestId}/approveStudent/`)
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};
+
+export function rejectStudent() {
+    return new Promise((resolve,reject) => {/*
+        axios.post('http://192.168.1.33:3000/manager/:id/rejectStudent/')
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })*/
+    });
+};

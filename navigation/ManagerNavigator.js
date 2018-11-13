@@ -6,13 +6,19 @@ import TabBarIcon from '../components/TabBarIcon';
 import ManagerHomeScreen from '../screens/manager/ManagerHomeScreen';
 import ManagerCreateClassScreen from '../screens/manager/ManagerCreateClassScreen';
 import ManagerLessonsScreen from '../screens/manager/ManagerLessonsScreen';
+import ManagerLessonInfoScreen from '../screens/manager/ManagerLessonInfoScreen';
 
 const ManagerHomeStack = createStackNavigator({
   ManagerHome: ManagerHomeScreen,
-});
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+ });
 
 ManagerHomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -23,10 +29,15 @@ ManagerHomeStack.navigationOptions = {
 
 const ManagerCreateClassStack = createStackNavigator({
   ManagerCreateClass: ManagerCreateClassScreen,
-});
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+ });
 
 ManagerCreateClassStack.navigationOptions = {
-  tabBarLabel: 'Sınıf Oluştur',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -37,10 +48,10 @@ ManagerCreateClassStack.navigationOptions = {
 
 const ManagerLessonsStack = createStackNavigator({
   ManagerLessons: ManagerLessonsScreen,
+  ManagerLessonInfo: ManagerLessonInfoScreen,
 });
 
 ManagerLessonsStack.navigationOptions = {
-  tabBarLabel: 'Derslerim',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -53,4 +64,9 @@ export default createBottomTabNavigator({
   ManagerHome: ManagerHomeStack,
   ManagerCreateClass: ManagerCreateClassStack,
   ManagerLessons: ManagerLessonsStack
-}, {initialRouteName: 'ManagerHome',});
+}, 
+{
+  tabBarOptions: {
+    showLabel: false
+  }
+}, {initialRouteName: 'ManagerHome'});
