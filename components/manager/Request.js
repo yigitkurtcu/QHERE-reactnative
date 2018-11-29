@@ -17,6 +17,7 @@ export default class Request extends React.Component {
             console.log('Err:', err)
         })
         this.setState({showApprove: false})
+        //TODO MAKEREFRESH
     }
 
     doReject = () => {
@@ -27,7 +28,7 @@ export default class Request extends React.Component {
         .catch(err => {
             console.log('Err:', err)
         })
-        this.setState({showApprove: false})
+        this.setState({showReject: false})
     }
 
     render () {

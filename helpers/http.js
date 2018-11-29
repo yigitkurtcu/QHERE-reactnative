@@ -63,9 +63,32 @@ export function getClasses() {
     });
 };
 
+export function joinRollCall(url) {
+    return new Promise((resolve,reject) => {
+        console.log(url)
+        axios.post(url)
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};
+
 export function getMyClasses() {
     return new Promise((resolve,reject) => {
         axios.get('http://192.168.1.33:3000/student/getUserClasses')
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};
+
+export function getDiscontinuity(classId) {
+    return new Promise((resolve,reject) => {
+        axios.get(`http://192.168.1.33:3000/student/${classId}/getDiscontinuity`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -141,13 +164,13 @@ export function approveStudent(requestId) {
     });
 };
 
-export function rejectStudent() {
-    return new Promise((resolve,reject) => {/*
-        axios.post('http://192.168.1.33:3000/manager/:id/rejectStudent/')
+export function rejectStudent(requestId) {
+    return new Promise((resolve,reject) => {
+        axios.post(`http://192.168.1.33:3000/manager/${requestId}/rejectStudent/`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
             return reject(err)
-        })*/
+        })
     });
 };

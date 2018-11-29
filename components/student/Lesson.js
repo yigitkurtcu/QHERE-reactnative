@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-import { Card, CardSection } from '../common'
+import { Card, CardSection, Button } from '../common'
 import Confirm from '../Confirm';
 import { joinClass }  from '../../helpers/http'
 
@@ -36,6 +36,9 @@ export default class Lesson extends React.Component {
 
                                 <Text style={styles.lessonHeader}>Son katılım tarihi: <Text style={ styles.lessonText }> {lastJoinTime.slice(0, 10)} </Text></Text>
                             </View>
+                    </CardSection>
+                    <CardSection>
+                        <Button color={"#000"}>Derse Katıl</Button>
                     </CardSection>
                 </TouchableOpacity>   
                 <Confirm

@@ -9,18 +9,22 @@ import {
   View,
 } from 'react-native';
 
+import LessonInfo from '../../components/manager/LessonInfo';
+//import LessonStudents from '../../components/manager/LessonStudents';
+
 export default class ManagerHomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'QHERE',
+  state = {lesson: this.props.navigation.getParam('lesson')}
+  
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.state.params.lesson.className
+    };
   };
 
-  state = {lesson: this.props.navigation.getParam('lesson')}
-
-  render() {
-    const { className } = this.state.lesson;
+  render() {  
     return (
       <View style={styles.container}>
-        <Text  style={ styles.headerTextStyle }>{className}</Text>  
+        <LessonInfo lesson={this.state.lesson} />
       </View>
     );
   }
@@ -35,7 +39,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 22,
     alignSelf: 'center',
-    marginVertical: 20,
+    marginTop: 20,
     fontWeight: 'bold'
   },
   smallHeaderTextStyle: {

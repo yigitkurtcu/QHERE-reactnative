@@ -10,13 +10,13 @@ export default class Lesson extends React.Component {
             <Card>  
                 <TouchableOpacity onPress={() => {this.props.navigation.navigate('ManagerLessonInfo', {lesson: this.props.lessonInstance})}}>
                     <CardSection>
-                            <View style={styles.headerContentStyle}>
-                                <Text style={styles.lessonHeader}>Dersin Adı: <Text  style={ styles.lessonText }>{ className } </Text></Text>
-                                
+                        <View style={styles.headerContentStyle}>
+                                <Text style={styles.lessonBigHeader}>{ className }</Text> 
+
                                 <Text style={styles.lessonHeader}>Devamsızlık:  <Text style={ styles.lessonText }>{ discontinuity } Ders </Text></Text>
-                                
-                                <Text style={styles.lessonHeader}>İşlenen Ders:  <Text style={ styles.lessonText }> 3 Hafta </Text></Text>
-                            </View>
+                                <Text style={styles.lessonHeader}>İşlenen Ders:  <Text style={ styles.lessonText }>3 Hafta </Text></Text>
+
+                        </View>
                     </CardSection>
                 </TouchableOpacity>   
             </Card>
@@ -30,11 +30,20 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'space-around'
     },
+    bigHeaderStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    lessonBigHeader: {
+        fontSize: 22,
+        fontWeight: 'bold'
+    },
     lessonHeader: {
         fontSize: 16,
         fontWeight: 'bold'
     },
     lessonText: {
+        fontSize: 16,
         fontWeight: 'normal'
     }
 }

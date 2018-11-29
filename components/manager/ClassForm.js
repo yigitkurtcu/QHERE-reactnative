@@ -11,21 +11,23 @@ import axios from 'axios';
 import { createClass }  from '../../helpers/http'
 
 class ClassForm extends React.Component {
-  state = { className: 'İşletim Sistemleri', joinTime: '2018-10-28', quota: '80', discontinuity: '4', description: 'Laptop lazım.'}
+  state = { className: 'İşletim Sistemleri', lastJoinTime: '2018-10-28', quota: '80', discontinuity: '4', description: 'Laptop lazım.'}
 
   doCreateClass() {    
     var classInstance = {
       className: this.state.className,
-      joinTime: this.state.joinTime,
+      lastJoinTime: this.state.lastJoinTime,
       quota: this.state.quota,
       discontinuity: this.state.discontinuity,
       description: this.state.description
     }
     createClass(classInstance)
     .then(res => {
+      alert('Ders başarıyla oluşturuldu.')
       console.log(res)
     })
     .catch(err => {
+      alert('İstek başarısız.')
       console.log(err)
     })
   }
@@ -43,12 +45,12 @@ class ClassForm extends React.Component {
           value={this.state.className}
         />
         <TextInput 
-          placeholder="Katılma Zamanı"
+          placeholder="Katılma Zamanı(2018-10-28)"
           autoCorrect={false}
           underlineColorAndroid={'transparent'}
           style={styles.input}
-          onChangeText={(joinTime) => this.setState({joinTime})}
-          value={this.state.joinTime}
+          onChangeText={(lastJoinTime) => this.setState({lastJoinTime})}
+          value={this.state.lastJoinTime}
         />
         <TextInput 
           placeholder="Sınıf Kontenjanı"

@@ -10,13 +10,7 @@ import ManagerLessonInfoScreen from '../screens/manager/ManagerLessonInfoScreen'
 
 const ManagerHomeStack = createStackNavigator({
   ManagerHome: ManagerHomeScreen,
-},
-{
-  headerMode: 'none',
-  navigationOptions: {
-    headerVisible: false,
-  }
- });
+});
 
 ManagerHomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
@@ -29,13 +23,7 @@ ManagerHomeStack.navigationOptions = {
 
 const ManagerCreateClassStack = createStackNavigator({
   ManagerCreateClass: ManagerCreateClassScreen,
-},
-{
-  headerMode: 'none',
-  navigationOptions: {
-    headerVisible: false,
-  }
- });
+});
 
 ManagerCreateClassStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (

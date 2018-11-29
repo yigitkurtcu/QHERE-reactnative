@@ -13,20 +13,18 @@ import { clearStore } from '../../helpers/localStore';
 import MyLessonList from '../../components/manager/MyLessonList';
 export default class ManagerLessonsScreen extends React.Component {
   static navigationOptions = {
-    headerStyle: {
-      backgroundColor: '#ffffff',
-      borderBottomWidth: 0,
-    }
+    title: 'Derslerim',
   };
 
   logout = () => {
     clearStore();
   }
-
+  //<Text  style={ styles.headerTextStyle }>Derslerim</Text> 
+  
   render() {
     return (
       <View style={styles.container}>
-        <Text  style={ styles.headerTextStyle }>Derslerim</Text> 
+
         <MyLessonList navigation={this.props.navigation}/>
         <TouchableOpacity onPress={this.logout}>
           <Text style={{fontSize:20, color:'#000'}}>LOGOUT</Text>
@@ -50,6 +48,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: 20,
     fontWeight: 'bold',
-    marginTop: 50
+    marginTop: 20
   },
 });
