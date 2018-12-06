@@ -23,30 +23,28 @@ export default class Lesson extends React.Component {
         const { className, managerName, quota, discontinuity, lastJoinTime } = this.props.lessonInstance;
         return (
             <Card>  
-                <TouchableOpacity onPress={() => {this.setState({showConfirmation: true})}}>
-                    <CardSection>
-                            <View style={styles.headerContentStyle}>
-                                <Text style={styles.lessonHeader}>Dersin Adı: <Text  style={ styles.lessonText }>{ className } </Text></Text>
-        
-                                <Text style={styles.lessonHeader}>Ders Hocası: <Text style={ styles.lessonText }>{ managerName } </Text></Text>
-                                
-                                <Text style={styles.lessonHeader}>Kontenjan: <Text style={ styles.lessonText }> { quota } </Text></Text>
-                                
-                                <Text style={styles.lessonHeader}>Devamsızlık:  <Text style={ styles.lessonText }>{ discontinuity } Ders </Text></Text>
+                <CardSection>
+                    <View style={styles.headerContentStyle}>
+                        <Text style={styles.lessonHeader}>Dersin Adı: <Text  style={ styles.lessonText }>{ className } </Text></Text>
 
-                                <Text style={styles.lessonHeader}>Son katılım tarihi: <Text style={ styles.lessonText }> {lastJoinTime.slice(0, 10)} </Text></Text>
-                            </View>
-                    </CardSection>
-                    <CardSection>
-                        <Button color={"#000"}>Derse Katıl</Button>
-                    </CardSection>
-                </TouchableOpacity>   
-                <Confirm
-                    visible={this.state.showConfirmation} 
-                    accept={this.doConfirmation.bind(this)}
-                    decline={() => {this.setState({showConfirmation: false})}}>
-                        { className } dersine katılmak istediğinizden emin misiniz ?
-                </Confirm>  
+                        <Text style={styles.lessonHeader}>Ders Hocası: <Text style={ styles.lessonText }>{ managerName } </Text></Text>
+                        
+                        <Text style={styles.lessonHeader}>Kontenjan: <Text style={ styles.lessonText }> { quota } </Text></Text>
+                        
+                        <Text style={styles.lessonHeader}>Devamsızlık:  <Text style={ styles.lessonText }>{ discontinuity } Ders </Text></Text>
+
+                        <Text style={styles.lessonHeader}>Son katılım tarihi: <Text style={ styles.lessonText }> {lastJoinTime.slice(0, 10)} </Text></Text>
+                    </View>
+                </CardSection>
+                <CardSection>
+                    <Button color={"#000"} onPress={() => {this.setState({showConfirmation: true})}}>Derse Katıl</Button>
+                </CardSection> 
+            <Confirm
+                visible={this.state.showConfirmation} 
+                accept={this.doConfirmation.bind(this)}
+                decline={() => {this.setState({showConfirmation: false})}}>
+                    { className } dersine katılmak istediğinizden emin misiniz ?
+            </Confirm>  
             </Card>
         );
     }

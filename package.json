@@ -3,7 +3,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "expo start",
+    "start": "expo-cli start --config ./config/development.json",
+    "start-prod": "expo-cli start --config ./config/production.json",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject"

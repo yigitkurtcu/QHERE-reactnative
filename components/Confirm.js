@@ -18,8 +18,8 @@ export default Confirm = ({ children, visible, accept, decline }) => {
                 </CardSection>
 
                 <CardSection>
-                    <Button color={'#000'} onPress={accept}>Evet</Button>
-                    <Button color={'#000'} onPress={decline}>Hayır</Button>
+                    <Button color={'#038e03'} onPress={accept}>Evet</Button>
+                    <Button color={'#ff0000'} onPress={decline}>Hayır</Button>
                 </CardSection>
             </View>
             
@@ -33,7 +33,7 @@ const styles = {
     },
     textStyle: {
         flex: 1,
-        fontSize: 20,
+        fontSize: 16,
         textAlign: 'center',
         lineHeight: 40
     },

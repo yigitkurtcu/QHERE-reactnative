@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { Constants } from 'expo';
+
+const url = Constants.manifest.extra.url;
 
 axios.interceptors.response.use((response) => {
     return response;
@@ -10,7 +13,7 @@ axios.interceptors.response.use((response) => {
 
 export function Register(user) {
     return new Promise((resolve,reject) => {
-        axios.post('http://192.168.1.33:3000/user/register/', user)
+        axios.post(`${url}/user/register/`, user)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -21,7 +24,7 @@ export function Register(user) {
 
 export function Login(user) {
     return new Promise((resolve,reject) => {
-        axios.post('http://192.168.1.33:3000/user/login/', user)
+        axios.post(`${url}/user/login/`, user)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -32,7 +35,7 @@ export function Login(user) {
 
 export function Forgot(email) {
     return new Promise((resolve,reject) => {
-        axios.post('http://192.168.1.33:3000/user/forgot/', {'email': email})
+        axios.post(`${url}/user/forgot/`, {'email': email})
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -43,7 +46,7 @@ export function Forgot(email) {
 
 export function resetPassword(resetInstance) {
     return new Promise((resolve,reject) => {
-        axios.post('http://192.168.1.33:3000/user/resetPassword/', resetInstance)
+        axios.post(`${url}/user/resetPassword/`, resetInstance)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -54,7 +57,7 @@ export function resetPassword(resetInstance) {
 
 export function getClasses() {
     return new Promise((resolve,reject) => {
-        axios.get('http://192.168.1.33:3000/student/getClasses/')
+        axios.get(`${url}/student/getClasses/`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -77,7 +80,7 @@ export function joinRollCall(url) {
 
 export function getMyClasses() {
     return new Promise((resolve,reject) => {
-        axios.get('http://192.168.1.33:3000/student/getUserClasses')
+        axios.get(`${url}/student/getUserClasses`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -88,7 +91,7 @@ export function getMyClasses() {
 
 export function getDiscontinuity(classId) {
     return new Promise((resolve,reject) => {
-        axios.get(`http://192.168.1.33:3000/student/${classId}/getDiscontinuity`)
+        axios.get(`${url}/student/${classId}/getDiscontinuity`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -99,7 +102,7 @@ export function getDiscontinuity(classId) {
 
 export function checkToken() {
     return new Promise((resolve,reject) => {
-        axios.get('http://192.168.1.33:3000/auth/verifyToken')
+        axios.get(`${url}/auth/verifyToken`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -110,7 +113,7 @@ export function checkToken() {
 
 export function joinClass(classId) {
     return new Promise((resolve,reject) => {
-        axios.post(`http://192.168.1.33:3000/student/${classId}/joinClass`)
+        axios.post(`${url}/student/${classId}/joinClass`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -121,7 +124,7 @@ export function joinClass(classId) {
 
 export function getRequests() {
     return new Promise((resolve,reject) => {
-        axios.get('http://192.168.1.33:3000/manager/getClassesRequest/')
+        axios.get(`${url}/manager/getClassesRequest/`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -132,7 +135,7 @@ export function getRequests() {
 
 export function createClass(classInstance) {
     return new Promise((resolve,reject) => {
-        axios.post('http://192.168.1.33:3000/manager/createClass/', classInstance)
+        axios.post(`${url}/manager/createClass/`, classInstance)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -143,7 +146,7 @@ export function createClass(classInstance) {
 
 export function getManagerClasses() {
     return new Promise((resolve,reject) => {
-        axios.get('http://192.168.1.33:3000/manager/getClasses/')
+        axios.get(`${url}/manager/getClasses/`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -155,7 +158,7 @@ export function getManagerClasses() {
 
 export function approveStudent(requestId) {
     return new Promise((resolve,reject) => {
-        axios.put(`http://192.168.1.33:3000/manager/${requestId}/approveStudent/`)
+        axios.put(`${url}/manager/${requestId}/approveStudent/`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {
@@ -166,7 +169,7 @@ export function approveStudent(requestId) {
 
 export function rejectStudent(requestId) {
     return new Promise((resolve,reject) => {
-        axios.post(`http://192.168.1.33:3000/manager/${requestId}/rejectStudent/`)
+        axios.post(`${url}/manager/${requestId}/rejectStudent/`)
         .then(res => {
             return resolve(res.data)
         }).catch(err => {

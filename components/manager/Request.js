@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, Platform } from 'react-native'
-import { Card, CardSection } from '../common'
+import { Card, CardSection, CardSectionColumn } from '../common'
 import Confirm from '../Confirm';
 import Icon from '../Icon';
 import { approveStudent, rejectStudent }  from '../../helpers/http'
@@ -36,29 +36,24 @@ export default class Request extends React.Component {
         const { className, studentName, studentNumber } = this.props.requestInstance;
         return (
             <Card>  
+                <CardSectionColumn>
+                    <Text style={styles.requestHeader}>Başvurulan Ders: <Text  style={ styles.requestText }>{ className } </Text></Text>
+                    <Text style={styles.requestHeader}>Öğrenci Adı: <Text style={ styles.requestText }>{ studentName } </Text></Text>
+                    <Text style={styles.requestHeader}>Öğrenci Numarası: <Text style={ styles.requestText }> { studentNumber } </Text></Text>                        
+                </CardSectionColumn>
 
-                    <CardSection>
-                            <View style={styles.headerContentStyle}>
-                                <Text style={styles.requestHeader}>Başvurulan Ders: <Text  style={ styles.requestText }>{ className } </Text></Text>
-        
-                                <Text style={styles.requestHeader}>Öğrenci Adı: <Text style={ styles.requestText }>{ studentName } </Text></Text>
-                                
-                                <Text style={styles.requestHeader}>Öğrenci Numarası: <Text style={ styles.requestText }> { studentNumber } </Text></Text>
-                                <View style={styles.iconView}>
-                                    <View style={{alignSelf: 'flex-start'}}>
-                                        <TouchableOpacity onPress={() => {this.setState({showApprove: true})}}>
-                                            <Icon name={Platform.OS === 'ios' ? 'ios-checkmark' : 'md-checkmark'} />
-                                        </TouchableOpacity>   
-                                    </View>
-                                    <View style={{alignSelf: 'flex-end'}}>
-                                        <TouchableOpacity onPress={() => {this.setState({showReject: true})}}>
-                                            <Icon name={Platform.OS === 'ios' ? 'ios-close' : 'md-close'} color={'#ff0000'} />
-                                        </TouchableOpacity>   
-                                    </View>
-                                </View>
-                            </View>
-                    </CardSection>
+                <CardSection>
+                    <TouchableOpacity style={styles.buttonStyle} onPress={() => {this.setState({showApprove: true})}}>
+                        <Icon name={Platform.OS === 'ios' ? 'ios-checkmark' : 'md-checkmark'} />
+                        <Text style={styles.textStyle}>Onayla</Text>
+                    </TouchableOpacity>   
 
+                    <TouchableOpacity style={styles.buttonStyle} onPress={() => {this.setState({showReject: true})}}>
+                        <Icon name={Platform.OS === 'ios' ? 'ios-close' : 'md-close'} color={'#ff0000'} />
+                        <Text style={styles.textStyle}>Reddet</Text>
+                    </TouchableOpacity>   
+                </CardSection>
+                
                 <Confirm
                     visible={this.state.showApprove} 
                     accept={this.doApprove.bind(this)}
@@ -79,22 +74,33 @@ export default class Request extends React.Component {
 }
 
 const styles = {
-    headerContentStyle: {
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-    },
-    iconView: {
-        flex:1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginStart: 50,
-        marginEnd: 50,
-    },
     requestHeader: {
         fontSize: 16,
         fontWeight: 'bold'
     },
     requestText: {
         fontWeight: 'normal'
+    },
+    textStyle: {
+        alignSelf: 'center',
+        fontSize: 16,
+        fontWeight: '600',
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 10,
+        color: "#000"
+    },
+    buttonStyle: {
+        flex: 1,
+        flexDirection: 'row',
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        borderWidth: 1,
+        marginLeft: 5,
+        marginRight: 5,
+        paddingLeft: 10,
+        borderColor: "#000"
     }
 }

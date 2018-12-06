@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "QHERE-reactnative",
+    "description": "QHERE Mobile Application.",
+    "slug": "QHERE-reactnative",
+    "privacy": "public",
+    "sdkVersion": "30.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "url": "http://yigitkurtcu.com"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSAppTransportSecurity" : {
+          "NSAllowsArbitraryLoads" : true,
+          "NSAllowsArbitraryLoadsForMedia": true, 
+          "NSAllowsArbitraryLoadsInWebContent": true, 
+          "NSExceptionAllowsInsecureHTTPLoads": true,
+          "NSTemporaryExceptionAllowsInsecureHTTPLoads": true,
+          "NSTemporaryExceptionMinimumTLSVersion": true
+        }
+      }
+    }
+  }
+}
