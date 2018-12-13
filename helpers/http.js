@@ -177,3 +177,14 @@ export function rejectStudent(requestId) {
         })
     });
 };
+
+export function deleteClass(classId) {
+    return new Promise((resolve,reject) => {
+        axios.delete(`${url}/manager/${classId}/deleteClass/`)
+        .then(res => {
+            return resolve(res.data)
+        }).catch(err => {
+            return reject(err)
+        })
+    });
+};

@@ -24,7 +24,7 @@ export default class ManagerHomeScreen extends React.Component {
   render() {  
     return (
       <View style={styles.container}>
-        <LessonInfo lesson={this.state.lesson} />
+        <LessonInfo navigation= {this.props.navigation} lesson={this.state.lesson} />
       </View>
     );
   }

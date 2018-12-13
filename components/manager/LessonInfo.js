@@ -8,11 +8,26 @@ import {
 } from 'react-native';
 import { Card, CardSection, CardSectionColumn, Button } from '../common';
 import InfoStudents from './InfoStudents';
+import { deleteClass,  }  from '../../helpers/http'
 
 class LessonInfo extends React.Component {
-
+  state = { showDelete: false };
+  
   renderStudents(student) {
     return <InfoStudents student={student.item} />
+  }
+
+  doDelete () {
+    deleteClass(this.props.lesson._id)
+    .then(res => {
+      console.log('Res:', res.status_code)
+      this.props.navigation.pop();
+      //TODO MAKE REFRESH
+    })
+    .catch(err => {
+        console.log('Err:', err)
+    })
+    this.setState({ showDelete: false });
   }
 
   render () {
@@ -32,7 +47,7 @@ class LessonInfo extends React.Component {
 
           <CardSection>
             <Button color={"#000"} onPress={() => {this.setState({showConfirmation: true})}}>Dersi Güncelle</Button>
-            <Button color={"#ff0000"} onPress={() => {this.setState({showConfirmation: true})}}>Dersi Sil</Button>
+            <Button color={"#ff0000"} onPress={() => {this.setState({showDelete: true})}}>Dersi Sil</Button>
           </CardSection>
 
           <View style={styles.centeredTextView}>
@@ -40,13 +55,19 @@ class LessonInfo extends React.Component {
           </View>
 
           <CardSection>
-          
             <FlatList 
               data={this.props.lesson.students}
               renderItem={this.renderStudents}
               keyExtractor={(student) => student._id.toString()}
             />
           </CardSection>
+
+          <Confirm
+            visible={this.state.showDelete} 
+            accept={this.doDelete.bind(this)}
+            decline={() => {this.setState({showDelete: false})}}>
+              { className } adlı dersi silmek istediğinize emin misiniz?
+          </Confirm>  
         </Card>
       </View>
                 

@@ -14,6 +14,7 @@ import MyLessonList from '../../components/manager/MyLessonList';
 export default class ManagerLessonsScreen extends React.Component {
   static navigationOptions = {
     title: 'Derslerim',
+    headerBackTitle: null
   };
 
   logout = () => {
