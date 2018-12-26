@@ -3,14 +3,15 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import ManagerHomeScreen from '../screens/manager/ManagerHomeScreen';
-import ManagerCreateClassScreen from '../screens/manager/ManagerCreateClassScreen';
-import ManagerLessonsScreen from '../screens/manager/ManagerLessonsScreen';
-import ManagerLessonInfoScreen from '../screens/manager/ManagerLessonInfoScreen';
-import ManagerLessonEditScreen from '../screens/manager/ManagerLessonEditScreen';
+import HomeScreen from '../screens/manager/HomeScreen';
+import CreateClassScreen from '../screens/manager/CreateClassScreen';
+import LessonsScreen from '../screens/manager/LessonsScreen';
+import LessonInfoScreen from '../screens/manager/LessonInfoScreen';
+import LessonEditScreen from '../screens/manager/LessonEditScreen';
+import LessonNotificationsListScreen from '../screens/manager/LessonNotificationsListScreen';
 
 const ManagerHomeStack = createStackNavigator({
-  ManagerHome: ManagerHomeScreen,
+  ManagerHome: HomeScreen,
 });
 
 ManagerHomeStack.navigationOptions = {
@@ -23,7 +24,7 @@ ManagerHomeStack.navigationOptions = {
 };
 
 const ManagerCreateClassStack = createStackNavigator({
-  ManagerCreateClass: ManagerCreateClassScreen,
+  ManagerCreateClass: CreateClassScreen,
 });
 
 ManagerCreateClassStack.navigationOptions = {
@@ -36,9 +37,10 @@ ManagerCreateClassStack.navigationOptions = {
 };
 
 const ManagerLessonsStack = createStackNavigator({
-  ManagerLessons: ManagerLessonsScreen,
-  ManagerLessonInfo: ManagerLessonInfoScreen,
-  ManagerLessonEdit: ManagerLessonEditScreen
+  ManagerLessons: LessonsScreen,
+  ManagerLessonInfo: LessonInfoScreen,
+  ManagerLessonEdit: LessonEditScreen,
+  ManagerNotificationsList: LessonNotificationsListScreen
 });
 
 ManagerLessonsStack.navigationOptions = {

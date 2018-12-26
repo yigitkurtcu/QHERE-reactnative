@@ -10,7 +10,7 @@ import {
 import ClassForm from '../../components/manager/ClassForm';
 import { headerStyle } from '../../config/config';
 
-export default class ManagerCreateClassScreen extends React.Component {
+export default class CreateClassScreen extends React.Component {
   static navigationOptions = {
     title: 'Sınıf Oluştur',
     ...headerStyle

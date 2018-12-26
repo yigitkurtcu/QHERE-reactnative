@@ -12,7 +12,7 @@ import {
 import RequestList from '../../components/manager/RequestList';
 import { headerStyle } from '../../config/config';
 
-export default class ManagerHomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Ders İstekleri',
     ...headerStyle

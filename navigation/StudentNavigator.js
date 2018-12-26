@@ -3,12 +3,12 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import StudentHomeScreen from '../screens/student/StudentHomeScreen';
+import HomeScreen from '../screens/student/HomeScreen';
 import QRCameraScreen from '../screens/student/QRCameraScreen';
-import StudentLessonsScreen from '../screens/student/StudentLessonsScreen';
+import LessonsScreen from '../screens/student/LessonsScreen';
 
 const StudentHome = createStackNavigator({
-  StudentHome: StudentHomeScreen,
+  StudentHome: HomeScreen,
 });
 
 StudentHome.navigationOptions = {
@@ -34,7 +34,7 @@ QRCamera.navigationOptions = {
 };
 
 const StudentLessons = createStackNavigator({
-  StudentLessons: StudentLessonsScreen,
+  StudentLessons: LessonsScreen,
 });
 
 StudentLessons.navigationOptions = {

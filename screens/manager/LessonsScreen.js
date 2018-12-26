@@ -12,7 +12,7 @@ import {
 import { clearStore } from '../../helpers/localStore';
 import MyLessonList from '../../components/manager/MyLessonList';
 import { headerStyle } from '../../config/config';
-export default class ManagerLessonsScreen extends React.Component {
+export default class LessonsScreen extends React.Component {
   static navigationOptions = {
     title: 'Derslerim',
     ...headerStyle

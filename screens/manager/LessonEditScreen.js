@@ -10,7 +10,7 @@ import ClassEditForm from '../../components/manager/ClassEditForm';
 import { headerStyle } from '../../config/config';
 //import LessonStudents from '../../components/manager/LessonStudents';
 
-export default class ManagerLessonEditScreen extends React.Component {
+export default class LessonEditScreen extends React.Component {
   state = {lesson: this.props.navigation.getParam('lesson')}
   
   static navigationOptions = ({ navigation }) => {
