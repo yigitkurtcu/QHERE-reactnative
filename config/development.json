@@ -12,24 +12,22 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff" 
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "extra": {
-      "url": "http://192.168.1.33:3000"
+      "url": "http://192.168.1.35:3000"
     },
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSAppTransportSecurity" : {
-          "NSAllowsArbitraryLoads" : true,
-          "NSAllowsArbitraryLoadsForMedia": true, 
-          "NSAllowsArbitraryLoadsInWebContent": true, 
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsArbitraryLoadsForMedia": true,
+          "NSAllowsArbitraryLoadsInWebContent": true,
           "NSExceptionAllowsInsecureHTTPLoads": true,
           "NSTemporaryExceptionAllowsInsecureHTTPLoads": true,
           "NSTemporaryExceptionMinimumTLSVersion": true

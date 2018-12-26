@@ -5,13 +5,13 @@ import { CardSectionColumn } from '../common'
 export default class Lesson extends React.Component {
 
   render () {
-    const { fullName, schoolNumber } = this.props.student;
+    const { fullName, schoolNumber, studentDiscontinuity } = this.props.student;
     
     return (
         <CardSectionColumn>
             <Text style={styles.boldText}>Öğrenci Adı: <Text style={ styles.normalText }>{ fullName }</Text></Text>
             <Text style={styles.boldText}>Öğrenci Numarası: <Text style={ styles.normalText }>{ schoolNumber }</Text></Text>
-            <Text style={styles.boldText}>Yoklama Durumu: <Text style={ styles.normalText }>0 / 0</Text></Text>
+            <Text style={styles.boldText}>Yoklama Durumu: <Text style={ styles.normalText }>{ studentDiscontinuity }</Text></Text>
         </CardSectionColumn>  
     );
   }

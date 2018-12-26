@@ -31,7 +31,7 @@ const styles = {
         alignItems: 'center',
     },
     lessonBigHeader: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: 'bold'
     },
     lessonHeader: {

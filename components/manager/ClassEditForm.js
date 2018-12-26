@@ -8,12 +8,12 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-import { createClass }  from '../../helpers/http'
+import { editClass }  from '../../helpers/http'
 
 class ClassForm extends React.Component {
-  state = { className: '', lastJoinTime: '', quota: '', discontinuity: '', description: ''}
+  state = { className: this.props.lesson[0].className, lastJoinTime: this.props.lesson[0].lastJoinTime, quota: this.props.lesson[0].quota.toString(), discontinuity: this.props.lesson[0].discontinuity.toString(), description: this.props.lesson[0].description}
 
-  doCreateClass() {    
+  doEditClass() {    
     var classInstance = {
       className: this.state.className,
       lastJoinTime: this.state.lastJoinTime,
@@ -21,9 +21,9 @@ class ClassForm extends React.Component {
       discontinuity: this.state.discontinuity,
       description: this.state.description
     }
-    createClass(classInstance)
+    editClass(this.props.lesson[0]._id, classInstance)
     .then(res => {
-      alert('Ders başarıyla oluşturuldu.')
+      alert('Ders başarıyla düzenlendi.')
       console.log(res)
     })
     .catch(err => {
@@ -73,20 +73,18 @@ class ClassForm extends React.Component {
           autoCorrect={false}
           underlineColorAndroid={'transparent'}
           returnKeyType={'send'}
-          onSubmitEditing={() => {this.doCreateClass()}}
+          onSubmitEditing={() => {this.doEditClass()}}
           style={styles.input}
           onChangeText={(description) => this.setState({description})}
           value={this.state.description}
         />
-        <TouchableOpacity style={styles.button} onPress={() => {this.doCreateClass()}}>
-            <Text style={styles.buttonText}>Sınıf Oluştur</Text>
+        <TouchableOpacity style={styles.button} onPress={() => {this.doEditClass()}}>
+            <Text style={styles.buttonText}>Düzenle</Text>
         </TouchableOpacity>
-      </View>
-                
-      );
+      </View>        
+    );
   }
-    
-  }
+}
 
   const styles = StyleSheet.create({
     container : {

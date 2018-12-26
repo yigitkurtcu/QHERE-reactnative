@@ -10,16 +10,17 @@ import {
 } from 'react-native';
 
 import RequestList from '../../components/manager/RequestList';
+import { headerStyle } from '../../config/config';
 
 export default class ManagerHomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'QHERE',
+    title: 'Ders İstekleri',
+    ...headerStyle
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text  style={ styles.headerTextStyle }>Ders İstekleri</Text> 
         <RequestList />
       </View>
     );
@@ -30,13 +31,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#01579b',
-  },
-  headerTextStyle: {
-    color: '#fff',
-    fontSize: 22,
-    alignSelf: 'center',
-    marginVertical: 20,
-    fontWeight: 'bold',
-    marginTop: 20
   }
 });

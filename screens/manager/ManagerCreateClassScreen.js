@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 
 import ClassForm from '../../components/manager/ClassForm';
+import { headerStyle } from '../../config/config';
 
 export default class ManagerCreateClassScreen extends React.Component {
   static navigationOptions = {
-    title: 'QHERE',
+    title: 'Sınıf Oluştur',
+    ...headerStyle
   };
 
   render() {
@@ -19,7 +21,6 @@ export default class ManagerCreateClassScreen extends React.Component {
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
           <View>
-            <Text style={styles.headerTextStyle}>Sınıf Oluştur</Text>
             <ClassForm />
           </View>
         </TouchableWithoutFeedback>
@@ -37,13 +38,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#01579b',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  headerTextStyle: {
-    color: '#fff',
-    fontSize: 22,
-    alignSelf: 'center',
-    marginVertical: 20,
-    fontWeight: 'bold',
-    marginTop: 20
-  },
+  }
 });

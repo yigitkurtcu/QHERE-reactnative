@@ -8,11 +8,23 @@ import {
 } from 'react-native';
 import { Card, CardSection, CardSectionColumn, Button } from '../common';
 import InfoStudents from './InfoStudents';
-import { deleteClass,  }  from '../../helpers/http'
+import { deleteClass, getClassInfo  }  from '../../helpers/http'
 
 class LessonInfo extends React.Component {
-  state = { showDelete: false };
-  
+  state = { showDelete: false, lesson: [], students: [] };
+  componentDidMount() {
+    getClassInfo(this.props.lesson._id)
+    .then(response =>{
+      this.setState({
+      lesson: response.data,
+      students: response.data[0].students
+     })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   renderStudents(student) {
     return <InfoStudents student={student.item} />
   }
@@ -22,7 +34,7 @@ class LessonInfo extends React.Component {
     .then(res => {
       console.log('Res:', res.status_code)
       this.props.navigation.pop();
-      //TODO MAKE REFRESH
+      // TODO MAKE REFRESH
     })
     .catch(err => {
         console.log('Err:', err)
@@ -46,7 +58,7 @@ class LessonInfo extends React.Component {
           </CardSectionColumn>
 
           <CardSection>
-            <Button color={"#000"} onPress={() => {this.setState({showConfirmation: true})}}>Dersi Güncelle</Button>
+            <Button color={"#000"} onPress={() => { this.props.navigation.navigate('ManagerLessonEdit', {lesson: this.state.lesson}) }}>Dersi Güncelle</Button>
             <Button color={"#ff0000"} onPress={() => {this.setState({showDelete: true})}}>Dersi Sil</Button>
           </CardSection>
 
@@ -55,8 +67,8 @@ class LessonInfo extends React.Component {
           </View>
 
           <CardSection>
-            <FlatList 
-              data={this.props.lesson.students}
+            <FlatList
+              data={this.state.students}
               renderItem={this.renderStudents}
               keyExtractor={(student) => student._id.toString()}
             />

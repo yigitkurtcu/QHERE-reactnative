@@ -1,19 +1,21 @@
 import React from 'react';
 import {
   StyleSheet,
+  Keyboard,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
-import LessonInfo from '../../components/manager/LessonInfo';
+import ClassEditForm from '../../components/manager/ClassEditForm';
 import { headerStyle } from '../../config/config';
 //import LessonStudents from '../../components/manager/LessonStudents';
 
-export default class ManagerLessonInfoScreen extends React.Component {
+export default class ManagerLessonEditScreen extends React.Component {
   state = {lesson: this.props.navigation.getParam('lesson')}
   
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.state.params.lesson.className,
+      title: 'Dersi Düzenle',
       ...headerStyle
     };
   };
@@ -21,7 +23,11 @@ export default class ManagerLessonInfoScreen extends React.Component {
   render() {  
     return (
       <View style={styles.container}>
-        <LessonInfo navigation= {this.props.navigation} lesson={this.state.lesson} />
+        <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
+          <View>
+            <ClassEditForm lesson={this.state.lesson}/>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -31,19 +37,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#01579b'
-  },
-  headerTextStyle: {
-    color: '#fff',
-    fontSize: 22,
-    alignSelf: 'center',
-    marginTop: 20,
-    fontWeight: 'bold'
-  },
-  smallHeaderTextStyle: {
-    color: '#fff',
-    fontSize: 18,
-    marginLeft: 10,
-    marginBottom: 10,
-    fontWeight: 'bold'
   }
 });

@@ -3,10 +3,12 @@ import { StyleSheet, Text, View, Vibration} from 'react-native';
 import Camera from '../../components/student/Camera';
 import { joinRollCall }  from '../../helpers/http'
 import { NavigationEvents } from 'react-navigation';
+import { headerStyle } from '../../config/config';
 
 export default class QRCameraScreen extends React.Component {
   static navigationOptions = {
-    title: 'QHERE',
+    title: 'Yoklama Ver',
+    ...headerStyle
   };
 
   state = { url: '' }; 
