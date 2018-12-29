@@ -248,3 +248,32 @@ export function deleteClass(classId) {
       });
   });
 }
+
+export function getNotifications(classId) {
+  return new Promise((resolve, reject) => {
+    console.log(classId)
+    axios
+      .get(`${url}/manager/getNotification/${classId}`)
+      .then(res => {
+        return resolve(res.data);
+      })
+      .catch(err => {
+        return reject(err);
+      });
+  });
+}
+
+export function sendNotification(notificationInstance) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${url}/manager/sendNotification/`, notificationInstance)
+      .then(res => {
+        return resolve(res.data);
+      })
+      .catch(err => {
+        return reject(err);
+      });
+  });
+}
+
+

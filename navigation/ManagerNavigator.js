@@ -9,6 +9,7 @@ import LessonsScreen from '../screens/manager/LessonsScreen';
 import LessonInfoScreen from '../screens/manager/LessonInfoScreen';
 import LessonEditScreen from '../screens/manager/LessonEditScreen';
 import LessonNotificationsListScreen from '../screens/manager/LessonNotificationsListScreen';
+import LessonCreateNotificationsScreen from '../screens/manager/LessonCreateNotificationsScreen';
 
 const ManagerHomeStack = createStackNavigator({
   ManagerHome: HomeScreen,
@@ -40,7 +41,8 @@ const ManagerLessonsStack = createStackNavigator({
   ManagerLessons: LessonsScreen,
   ManagerLessonInfo: LessonInfoScreen,
   ManagerLessonEdit: LessonEditScreen,
-  ManagerNotificationsList: LessonNotificationsListScreen
+  ManagerNotificationsList: LessonNotificationsListScreen,
+  ManagerCreateNotification: LessonCreateNotificationsScreen
 });
 
 ManagerLessonsStack.navigationOptions = {

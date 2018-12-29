@@ -9,10 +9,12 @@ import {
   View,
 } from 'react-native';
 
-import RequestList from '../../components/manager/RequestList';
+import CreateNotificationForm from '../../components/manager/CreateNotificationForm';
 import { headerStyle } from '../../config/config';
 
-export default class CreateNotifications extends React.Component {
+export default class CreateNotificationsScreen extends React.Component {
+  state = {lesson: this.props.navigation.getParam('lesson')}
+
   static navigationOptions = {
     title: 'Duyuru Oluştur',
     ...headerStyle
@@ -21,6 +23,7 @@ export default class CreateNotifications extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <CreateNotificationForm lesson={this.state.lesson}/>
       </View>
     );
   }

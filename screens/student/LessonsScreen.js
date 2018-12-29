@@ -18,6 +18,7 @@ export default class StudentLessonsScreen extends React.Component {
 
   logout = () => {
     clearStore();
+    this.props.navigation.navigate('Auth')
   }
 
   render() {

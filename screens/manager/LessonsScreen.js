@@ -20,6 +20,7 @@ export default class LessonsScreen extends React.Component {
 
   logout = () => {
     clearStore();
+    this.props.navigation.navigate('Auth')
   }
   //<Text  style={ styles.headerTextStyle }>Derslerim</Text> 
   

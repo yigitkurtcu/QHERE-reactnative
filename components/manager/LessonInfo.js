@@ -58,6 +58,21 @@ class LessonInfo extends React.Component {
           </CardSectionColumn>
 
           <CardSection>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>1</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>2</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>3</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>4</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>1</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>2</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>3</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>4</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>1</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>2</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>3</Text></View>
+            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>4</Text></View>
+          </CardSection>
+
+          <CardSection>
             <Button color={"#000"} onPress={() => { this.props.navigation.navigate('ManagerLessonEdit', {lesson: this.state.lesson}) }}>Dersi Güncelle</Button>
             <Button color={"#ff0000"} onPress={() => {this.setState({showDelete: true})}}>Dersi Sil</Button>
           </CardSection>
@@ -125,6 +140,16 @@ class LessonInfo extends React.Component {
     },
     normalText: {
       fontWeight: 'normal',
+    },
+    qrInfo: {
+      borderWidth: 1,
+      borderColor: "#000",
+      padding: 10,
+      margin: 5,
+    },
+    qrInfoText: {
+      fontSize: 16,
+      fontWeight: 'bold',
     }
   });
 
