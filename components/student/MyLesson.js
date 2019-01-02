@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
+import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { Card, CardSection } from '../common';
 import { getDiscontinuity }  from '../../helpers/http';
 
 export default class Lesson extends React.Component {
-    state = {qhereCount: 0, rollCall: 0} 
+    state = { rollCall: 0, qhereCount: 0 } 
 
     componentWillMount() {
         getDiscontinuity(this.props.lessonInstance._id)
@@ -14,6 +15,12 @@ export default class Lesson extends React.Component {
         .catch(err => {
             console.log('Err:', err)
         })
+    }
+
+    progressBarValue() {
+        if(this.state.qhereCount === 0)
+            return 0
+        return (this.state.rollCall / this.state.qhereCount) * 100
     }
 
     render () {
@@ -30,6 +37,13 @@ export default class Lesson extends React.Component {
                             <Text style={styles.lessonHeader}>Devamsızlık:  <Text style={ styles.lessonText }>{ discontinuity } Ders </Text></Text>
 
                             <Text style={styles.lessonHeader}>Yoklama:  <Text style={ styles.lessonText }>{ rollCall } / { qhereCount } Ders </Text></Text>
+                            
+                            <ProgressBarAnimated
+                                width={Dimensions.get('screen').width - 30}
+                                height={16}
+                                value={this.progressBarValue()}
+                            />
+                        
                         </View>
                 </CardSection>  
             </Card>
@@ -41,7 +55,7 @@ export default class Lesson extends React.Component {
 const styles = {
     headerContentStyle: {
         flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     lessonHeader: {
         fontSize: 16,

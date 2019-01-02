@@ -276,4 +276,30 @@ export function sendNotification(notificationInstance) {
   });
 }
 
+export function getMyRequested() {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${url}/student/getRequestClasses/`)
+      .then(res => {
+        return resolve(res.data);
+      })
+      .catch(err => {
+        return reject(err);
+      });
+  });
+}
+
+export function getMyNotifications() {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${url}/student/getNotification/`)
+      .then(res => {
+        return resolve(res.data);
+      })
+      .catch(err => {
+        return reject(err);
+      });
+  });
+}
+
 

@@ -16,10 +16,10 @@ export default class StudentHomeScreen extends React.Component {
         const { hasCameraPermission } = this.state;
 
         if (hasCameraPermission === null) {
-            return <Text>Requesting for camera permission</Text>;
+            return <Text>Kamera izni gerekiyor</Text>;
         }
         if (hasCameraPermission === false) {
-            return <Text>No access to camera</Text>;
+            return <Text>Kameraya erişim izni yok</Text>;
         }
         return (
             <View style={styles.container}>

@@ -1,21 +1,30 @@
 import React from 'react';
 import {
-  Image,
   Platform,
-  ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
+import TabBarIcon from '../../components/TabBarIcon';
 import LessonList from '../../components/student/LessonList';
 import { headerStyle } from '../../config/config';
 
 export default class StudentHomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Açık Dersler',
-    ...headerStyle
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Açık Dersler',
+      headerRight: (
+        <View style={styles.headerRightContainer}>
+          <TouchableOpacity onPress={() => { navigation.navigate('RequestedClass') }}>
+            <TabBarIcon
+              name={ Platform.OS === 'ios'? `ios-time`: 'md-time' }
+            />
+          </TouchableOpacity>
+        </View>
+      ),
+      ...headerStyle
+    };
   };
 
   render() {
@@ -31,5 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#01579b',
+  },
+  headerRightContainer: {
+    marginRight: 12,
   }
 });

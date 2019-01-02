@@ -22,7 +22,6 @@ export default class LessonsScreen extends React.Component {
     clearStore();
     this.props.navigation.navigate('Auth')
   }
-  //<Text  style={ styles.headerTextStyle }>Derslerim</Text> 
   
   render() {
     return (
@@ -30,7 +29,7 @@ export default class LessonsScreen extends React.Component {
 
         <MyLessonList navigation={this.props.navigation}/>
         <TouchableOpacity onPress={this.logout}>
-          <Text style={{fontSize:20, color:'#000'}}>LOGOUT</Text>
+          <Text style={styles.logoutText}>LOGOUT</Text>
         </TouchableOpacity>
       </View>
     );
@@ -45,12 +44,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#01579b',
   },
-  headerTextStyle: {
-    color: '#fff',
-    fontSize: 22,
-    alignSelf: 'center',
-    marginVertical: 20,
-    fontWeight: 'bold',
-    marginTop: 20
-  },
+  logoutText: {
+    fontSize: 20,
+    color:'#fff',
+    margin: 5,
+    alignSelf: 'flex-end',
+  }
 });

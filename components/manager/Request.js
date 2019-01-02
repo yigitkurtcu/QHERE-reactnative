@@ -85,9 +85,6 @@ const styles = {
         alignSelf: 'center',
         fontSize: 16,
         fontWeight: '600',
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 10,
         color: "#000"
     },
     buttonStyle: {
@@ -100,7 +97,7 @@ const styles = {
         borderWidth: 1,
         marginLeft: 5,
         marginRight: 5,
-        paddingLeft: 10,
-        borderColor: "#000"
+        borderColor: "#000",
+        justifyContent: 'space-evenly'
     }
 }

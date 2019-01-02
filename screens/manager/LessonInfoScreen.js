@@ -23,17 +23,16 @@ export default class LessonInfoScreen extends React.Component {
         <View style={styles.headerRightContainer}>
           <TouchableOpacity onPress={() => { navigation.navigate('ManagerNotificationsList', {lesson: navigation.state.params.lesson}) }}>
             <TabBarIcon
-              name={ Platform.OS === 'ios'? `ios-chatboxes`: 'md-chatboxes' }
+              name={ Platform.OS === 'ios'? `ios-notifications`: 'md-notifications' }
             />
           </TouchableOpacity>
         </View>
-
       ),
       ...headerStyle
     };
   };
 
-  render() {  
+  render() {
     return (
       <View style={styles.container}>
         <LessonInfo navigation= {this.props.navigation} lesson={this.state.lesson} />
@@ -49,19 +48,5 @@ const styles = StyleSheet.create({
   },
   headerRightContainer: {
     marginRight: 12,
-  },
-  headerTextStyle: {
-    color: '#fff',
-    fontSize: 22,
-    alignSelf: 'center',
-    marginTop: 20,
-    fontWeight: 'bold'
-  },
-  smallHeaderTextStyle: {
-    color: '#fff',
-    fontSize: 18,
-    marginLeft: 10,
-    marginBottom: 10,
-    fontWeight: 'bold'
   }
 });

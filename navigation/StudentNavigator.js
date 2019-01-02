@@ -6,9 +6,12 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/student/HomeScreen';
 import QRCameraScreen from '../screens/student/QRCameraScreen';
 import LessonsScreen from '../screens/student/LessonsScreen';
+import RequestedClassScreen from '../screens/student/RequestedClassScreen';
+import NotificationsScreen from '../screens/student/NotificationsScreen';
 
 const StudentHome = createStackNavigator({
   StudentHome: HomeScreen,
+  RequestedClass: RequestedClassScreen
 });
 
 StudentHome.navigationOptions = {
@@ -35,6 +38,7 @@ QRCamera.navigationOptions = {
 
 const StudentLessons = createStackNavigator({
   StudentLessons: LessonsScreen,
+  StudentNotifications: NotificationsScreen
 });
 
 StudentLessons.navigationOptions = {
@@ -53,7 +57,10 @@ export default createBottomTabNavigator({
 }, 
 {
   tabBarOptions: {
-    showLabel: false
+    showLabel: false,
+    style: {
+      backgroundColor: '#fff',
+    },
   }
 },
 {initialRouteName: 'StudentHome'});

@@ -11,7 +11,13 @@ export default class QRCameraScreen extends React.Component {
     ...headerStyle
   };
 
-  state = { url: '' }; 
+  state = { url: '', showCamera: false }; 
+
+  renderCamera() {
+    if(!this.state.showCamera)
+      return null;
+    return <Camera onScanned={this.onScanned.bind(this)} />
+  }
 
   onScanned({ data }) {// make joinRollCall
     if(this.state.url == ''){
@@ -35,8 +41,11 @@ export default class QRCameraScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Camera onScanned={this.onScanned.bind(this)} />
-        <NavigationEvents onWillFocus={() => this.setState({ url: '' })} />
+        {this.renderCamera()}
+        <NavigationEvents 
+          onWillFocus={() => this.setState({ url: '', showCamera: true })}
+          onDidBlur={() => this.setState({ showCamera: false })}
+        />
       </View>
     );
   }

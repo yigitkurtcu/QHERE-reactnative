@@ -1,19 +1,33 @@
 import React from 'react';
 import {
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-import { clearStore } from '../../helpers/localStore';
+import TabBarIcon from '../../components/TabBarIcon';
 import MyLessonList from '../../components/student/MyLessonList';
+
+import { clearStore } from '../../helpers/localStore';
 import { headerStyle } from '../../config/config';
 
 export default class StudentLessonsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Derslerim',
-    ...headerStyle
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Derslerim',
+      headerRight: (
+        <View style={styles.headerRightContainer}>
+          <TouchableOpacity onPress={() => { navigation.navigate('StudentNotifications') }}>
+            <TabBarIcon
+              name={ Platform.OS === 'ios'? `ios-notifications`: 'md-notifications' }
+            />
+          </TouchableOpacity>
+        </View>
+      ),
+      ...headerStyle
+    };
   };
 
   logout = () => {
@@ -26,19 +40,25 @@ export default class StudentLessonsScreen extends React.Component {
       <View style={styles.container}>
         <MyLessonList />
         <TouchableOpacity onPress={this.logout}>
-          <Text style={{fontSize:20, color:'#fff'}}>LOGOUT</Text>
+          <Text style={styles.logoutText}>LOGOUT</Text>
         </TouchableOpacity>
       </View>
     );
   }
-
-
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#01579b',
+  },
+  logoutText: {
+    fontSize: 20,
+    color:'#fff',
+    margin: 5,
+    alignSelf: 'flex-end',
+  },
+  headerRightContainer: {
+    marginRight: 12,
   }
 });

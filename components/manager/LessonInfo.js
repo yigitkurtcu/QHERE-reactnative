@@ -12,6 +12,12 @@ import { deleteClass, getClassInfo  }  from '../../helpers/http'
 
 class LessonInfo extends React.Component {
   state = { showDelete: false, lesson: [], students: [] };
+
+  constructor(props) {
+    super(props)
+    this.renderStudents = this.renderStudents.bind(this)
+  }
+
   componentDidMount() {
     getClassInfo(this.props.lesson._id)
     .then(response =>{
@@ -26,7 +32,7 @@ class LessonInfo extends React.Component {
   }
 
   renderStudents(student) {
-    return <InfoStudents student={student.item} />
+    return <InfoStudents qhereCount={this.props.lesson.qheres.length} student={student.item} />
   }
 
   doDelete () {
@@ -56,21 +62,6 @@ class LessonInfo extends React.Component {
               <Text style={styles.midHeaderText}>Kontenjan:  <Text style={ styles.normalText }> { quota } </Text></Text>
               <Text style={styles.midHeaderText}>Devamsızlık:  <Text style={ styles.normalText }>{ discontinuity } Ders </Text></Text>
           </CardSectionColumn>
-
-          <CardSection>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>1</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>2</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>3</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>4</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>1</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>2</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>3</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>4</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>1</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>2</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>3</Text></View>
-            <View style={styles.qrInfo}><Text style={styles.qrInfoText}>4</Text></View>
-          </CardSection>
 
           <CardSection>
             <Button color={"#000"} onPress={() => { this.props.navigation.navigate('ManagerLessonEdit', {lesson: this.state.lesson}) }}>Dersi Güncelle</Button>
@@ -140,16 +131,6 @@ class LessonInfo extends React.Component {
     },
     normalText: {
       fontWeight: 'normal',
-    },
-    qrInfo: {
-      borderWidth: 1,
-      borderColor: "#000",
-      padding: 10,
-      margin: 5,
-    },
-    qrInfoText: {
-      fontSize: 16,
-      fontWeight: 'bold',
     }
   });
 
