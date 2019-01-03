@@ -8,7 +8,7 @@ export default class Lesson extends React.Component {
     progressBarValue() {
         if(this.props.qhereCount === 0)
             return 0
-        return ((this.props.qhereCount - this.props.student.studentDiscontinuity) / this.props.qhereCount) * 100
+        return (this.props.student.studentDiscontinuity / this.props.qhereCount) * 100
     }
 
     render () {
