@@ -29,13 +29,16 @@ class LoginForm extends React.Component {
           axios.defaults.headers.common['Authorization'] = res.data.token.accessToken;
             this.props.navigation.navigate(res.data.userType)
         }).catch(err => {
-          console.log(err);
+          alert(err)
+          console.log(err)
         })
       }).catch(err => {
-        console.log(err);
+        alert(err)
+        console.log(err)
       })
     }).catch(err => {
-      console.log(err);
+      alert(err)
+      console.log(err)
     })
   }
 

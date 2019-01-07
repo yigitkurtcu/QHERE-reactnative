@@ -14,11 +14,12 @@ class ForgotForm extends React.Component {
 
   doForgot() {
     Forgot(this.state.email)
-    .then(res => {
-      console.log(res)
+    .then(() => {
+      alert('Doğrulama kodu email adresinize gönderildi.')
       this.props.navigation.navigate('ChangePassword')
     })
     .catch(err => {
+      alert(err)
       console.log(err)
     })
     

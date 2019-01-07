@@ -27,7 +27,6 @@ class ClassForm extends React.Component {
       console.log(res)
     })
     .catch(err => {
-      alert('İstek başarısız.')
       console.log(err)
     })
   }

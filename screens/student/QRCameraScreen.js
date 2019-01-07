@@ -19,7 +19,7 @@ export default class QRCameraScreen extends React.Component {
     return <Camera onScanned={this.onScanned.bind(this)} />
   }
 
-  onScanned({ data }) {// make joinRollCall
+  onScanned({ data }) {
     if(this.state.url == ''){
       joinRollCall(data) 
       .then(response => {
@@ -31,9 +31,9 @@ export default class QRCameraScreen extends React.Component {
       .catch(err => {
         Vibration.vibrate(500)
         this.setState({ url: data })
-        alert('Hata : ' + err.message)
+        alert(err)
+        console.log(err)
         this.props.navigation.navigate("StudentLessons")
-        console.log(err.message)
       })
     }
   }

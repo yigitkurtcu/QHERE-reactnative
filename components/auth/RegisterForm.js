@@ -13,19 +13,24 @@ import { Register } from '../../helpers/http';
 class RegisterForm extends React.Component {
     state = { fullName: '', schoolNumber: '', gender: 'Cinsiyet', email: '', password: '', showGender: false}
     doRegister() {
-        var user = {
-            fullName: this.state.fullName,
-            schoolNumber: this.state.schoolNumber,
-            gender: this.state.gender,
-            email: this.state.email,
-            password: this.state.password
-        };
-        Register(user)
-        .then(res => {
-            this.props.navigation.navigate('Login')
-        }).catch(err => {
-            alert(err.message)
-        })
+        if(this.state.fullName != '' && this.state.schoolNumber != '' && this.state.gender != '' && this.state.email != '' && this.state.password != ''){
+            var user = {
+                fullName: this.state.fullName,
+                schoolNumber: this.state.schoolNumber,
+                gender: this.state.gender,
+                email: this.state.email,
+                password: this.state.password
+            };
+            Register(user)
+            .then(res => {
+                alert('Üyeliğiniz başarılı bir şekilde oluşturuldu.')
+                this.props.navigation.navigate('Login')
+            }).catch(err => {
+                alert(err)
+            })
+        } else {
+            alert('Hepsini doldurmalısın.')
+        }
     }
 
     genderText() {

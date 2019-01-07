@@ -13,23 +13,27 @@ import { createClass }  from '../../helpers/http'
 class ClassForm extends React.Component {
   state = { className: '', lastJoinTime: '', quota: '', discontinuity: '', description: ''}
 
-  doCreateClass() {    
-    var classInstance = {
-      className: this.state.className,
-      lastJoinTime: this.state.lastJoinTime,
-      quota: this.state.quota,
-      discontinuity: this.state.discontinuity,
-      description: this.state.description
+  doCreateClass() {
+    if(this.state.className != '' && this.state.lastJoinTime != '' && this.state.quota != '' && this.state.discontinuity != '' && this.state.description != ''){
+      var classInstance = {
+        className: this.state.className,
+        lastJoinTime: this.state.lastJoinTime,
+        quota: this.state.quota,
+        discontinuity: this.state.discontinuity,
+        description: this.state.description
+      }
+      createClass(classInstance)
+      .then(res => {
+        alert('Ders başarıyla oluşturuldu.')
+        console.log(res)
+      })
+      .catch(err => {
+        alert('Başarısız!')
+        console.log(err)
+      })
+    } else {
+      alert('Hepsini doldurmalısın.')
     }
-    createClass(classInstance)
-    .then(res => {
-      alert('Ders başarıyla oluşturuldu.')
-      console.log(res)
-    })
-    .catch(err => {
-      alert('İstek başarısız.')
-      console.log(err)
-    })
   }
 
   

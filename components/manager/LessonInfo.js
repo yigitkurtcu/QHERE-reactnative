@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
+import Confirm from '../Confirm';
 import { Card, CardSection, CardSectionColumn, Button } from '../common';
 import InfoStudents from './InfoStudents';
 import { deleteClass, getClassInfo  }  from '../../helpers/http'

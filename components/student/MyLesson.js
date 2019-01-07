@@ -13,7 +13,7 @@ export default class Lesson extends React.Component {
             this.setState({qhereCount: res.data.qhereCount, rollCall: res.data.rollCall})
         })
         .catch(err => {
-            console.log('Err:', err)
+            console.log(err)
         })
     }
 

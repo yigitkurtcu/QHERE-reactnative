@@ -21,19 +21,19 @@ class ChangePasswordForm extends React.Component {
                 }
                 resetPassword(instance)
                 .then(res => {
-                    console.log(res)
-                    this.props.navigation.navigate('Login')
+                  console.log(res)
+                  this.props.navigation.navigate('Login')
                 })
                 .catch(err => {
-                    console.log(err)
+                  alert(err)
+                  console.log(err)
                 })
-            }else 
-                alert('Şifreler birbirleriyle uyuşmuyor.')
-        }else 
-            alert('Hepsini doldurmalısın.')
-        
-        
-    
+            }else {
+              alert('Şifreler birbirleriyle uyuşmuyor.')
+            }
+        } else {
+          alert('Hepsini doldurmalısın.')
+          }  
   }
 
   render () {

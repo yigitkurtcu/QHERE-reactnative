@@ -14,7 +14,7 @@ export default class Request extends React.Component {
             console.log('Res:', res)
         })
         .catch(err => {
-            console.log('Err:', err)
+            console.log(err)
         })
         this.setState({showApprove: false})
         //TODO MAKEREFRESH
@@ -26,7 +26,7 @@ export default class Request extends React.Component {
             console.log('Res:', res)
         })
         .catch(err => {
-            console.log('Err:', err)
+            console.log(err)
         })
         this.setState({showReject: false})
     }

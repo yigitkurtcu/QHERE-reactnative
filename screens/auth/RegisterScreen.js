@@ -8,7 +8,6 @@ import {
   Keyboard,
   KeyboardAvoidingView
 } from 'react-native';
-import Logo from '../../components/Logo';
 
 export default class RegisterScreen extends React.Component {
   static navigationOptions = {

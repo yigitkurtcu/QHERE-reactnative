@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View } from 'react-native'
 import { Card, CardSection, Button } from '../common'
 import Confirm from '../Confirm';
 import { joinClass }  from '../../helpers/http'
@@ -13,7 +13,7 @@ export default class Lesson extends React.Component {
             console.log('Res:', res)
         })
         .catch(err => {
-            console.log('Err:', err)
+            console.log(err)
         })
         this.setState({showConfirmation: false})
     }

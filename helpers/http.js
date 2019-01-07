@@ -35,7 +35,6 @@ export function Login(user) {
         return resolve(res.data);
       })
       .catch(err => {
-        console.log('bb', err)
         return reject(err);
       });
   });
@@ -251,7 +250,6 @@ export function deleteClass(classId) {
 
 export function getNotifications(classId) {
   return new Promise((resolve, reject) => {
-    console.log(classId)
     axios
       .get(`${url}/manager/getNotification/${classId}`)
       .then(res => {
