@@ -15,25 +15,17 @@ const StudentHome = createStackNavigator({
 });
 
 StudentHome.navigationOptions = {
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={ Platform.OS === 'ios'? `ios-home${focused ? '' : '-outline'}`: 'md-home' }
-    />
-  ),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-home` : 'md-home'} />
 };
 
 const QRCamera = createStackNavigator({
-  QRCamera: QRCameraScreen,
+  QRCamera: QRCameraScreen
 });
 
 QRCamera.navigationOptions = {
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={ Platform.OS === 'ios'? `ios-camera${focused ? '' : '-outline'}`: 'md-camera' }
-    />
-  ),
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-camera` : 'md-camera'} />
+  )
 };
 
 const StudentLessons = createStackNavigator({
@@ -42,25 +34,22 @@ const StudentLessons = createStackNavigator({
 });
 
 StudentLessons.navigationOptions = {
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={ Platform.OS === 'ios'? `ios-book${focused ? '' : '-outline'}`: 'md-book' }
-    />
-  ),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-book` : 'md-book'} />
 };
 
-export default createBottomTabNavigator({
-  StudentHome,
-  QRCamera,
-  StudentLessons
-}, 
-{
-  tabBarOptions: {
-    showLabel: false,
-    style: {
-      backgroundColor: '#fff',
-    },
-  }
-},
-{initialRouteName: 'StudentHome'});
+export default createBottomTabNavigator(
+  {
+    StudentHome,
+    QRCamera,
+    StudentLessons
+  },
+  {
+    tabBarOptions: {
+      showLabel: false,
+      style: {
+        backgroundColor: '#fff'
+      }
+    }
+  },
+  { initialRouteName: 'StudentHome' }
+);

@@ -12,29 +12,21 @@ import LessonNotificationsListScreen from '../screens/manager/LessonNotification
 import LessonCreateNotificationsScreen from '../screens/manager/LessonCreateNotificationsScreen';
 
 const ManagerHomeStack = createStackNavigator({
-  ManagerHome: HomeScreen,
+  ManagerHome: HomeScreen
 });
 
 ManagerHomeStack.navigationOptions = {
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={ Platform.OS === 'ios'? `ios-home${focused ? '' : '-outline'}`: 'md-home' }
-    />
-  ),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-home` : 'md-home'} />
 };
 
 const ManagerCreateClassStack = createStackNavigator({
-  ManagerCreateClass: CreateClassScreen,
+  ManagerCreateClass: CreateClassScreen
 });
 
 ManagerCreateClassStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={ Platform.OS === 'ios'? `ios-create${focused ? '' : '-outline'}`: 'md-create' }
-    />
-  ),
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-create` : 'md-create'} />
+  )
 };
 
 const ManagerLessonsStack = createStackNavigator({
@@ -46,21 +38,19 @@ const ManagerLessonsStack = createStackNavigator({
 });
 
 ManagerLessonsStack.navigationOptions = {
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={ Platform.OS === 'ios'? `ios-book${focused ? '' : '-outline'}`: 'md-book' }
-    />
-  ),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? `ios-book` : 'md-book'} />
 };
 
-export default createBottomTabNavigator({
-  ManagerHome: ManagerHomeStack,
-  ManagerCreateClass: ManagerCreateClassStack,
-  ManagerLessons: ManagerLessonsStack
-}, 
-{
-  tabBarOptions: {
-    showLabel: false
-  }
-}, {initialRouteName: 'ManagerHome'});
+export default createBottomTabNavigator(
+  {
+    ManagerHome: ManagerHomeStack,
+    ManagerCreateClass: ManagerCreateClassStack,
+    ManagerLessons: ManagerLessonsStack
+  },
+  {
+    tabBarOptions: {
+      showLabel: false
+    }
+  },
+  { initialRouteName: 'ManagerHome' }
+);

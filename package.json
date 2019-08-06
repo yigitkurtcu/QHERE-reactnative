@@ -13,10 +13,16 @@
     "@expo/samples": "2.1.1",
     "@expo/vector-icons": "^8.0.0",
     "axios": "^0.18.0",
-    "expo": "^30.0.1",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "expo": "^31.0.0",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-native-progress-bar-animated": "^1.0.6",
     "react-navigation": "^2.16.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "babel-preset-expo": "^5.0.0",
+    "schedule": "^0.4.0"
   }
 }
